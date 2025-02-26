@@ -6,7 +6,7 @@
 
     <groupId>me.n1ar4</groupId>
     <artifactId>class-obf</artifactId>
-    <version>1.4.0</version>
+    <version>1.5.0</version>
 
     <packaging>jar</packaging>
     <description>Class Obfuscator Project</description>
@@ -15,7 +15,7 @@
         <!-- Dependencies Version -->
         <asm.version>9.7.1</asm.version>
         <jcommander.version>1.82</jcommander.version>
-        <snake.yaml.version>2.3</snake.yaml.version>
+        <snake.yaml.version>2.4</snake.yaml.version>
         <!-- Java Compiler Version -->
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>

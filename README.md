@@ -29,14 +29,6 @@
 
 ![](img/006.png)
 
-从 `1.4.0` 版本开始支持将 `INVOKE` 指令转为反射结合其他混淆方式隐藏特征
-
-![](img/008.png)
-
-从 `1.5.0` 版本解决了缺少依赖的问题，如果你混淆时遇到报错找不到某些依赖类：
-
-请将依赖的 `jar` 文件都放在当前目录下的 `class-obf-lib` 目录（会自动生成）
-
 ## 背景
 
 `jar-analyzer` 系列曾有一款工具 `jar-obfuscator` 实现 `jar` 包的混淆
@@ -113,6 +105,12 @@ public class Test {
 
 例如 `me.n1ar4.Test` 将会导出 `class-obf-output/me/n1ar4/Test.class` 文件
 
+## 问题
+
+从 `1.5.0` 版本解决了缺少依赖的问题，如果你混淆时遇到报错找不到某些依赖类：
+
+请将依赖的 `jar` 文件都放在当前目录下的 `class-obf-lib` 目录（会自动生成）
+
 ## API
 
 你可以使用代码方式调用（参考 `test` 目录的 `TestQuick/TestAPI` 文件）
@@ -132,7 +130,7 @@ public class Test {
     <dependency>
         <groupId>com.github.jar-analyzer</groupId>
         <artifactId>class-obf</artifactId>
-        <version>1.4.0</version>
+        <version>1.5.0</version>
     </dependency>
 </dependencies>
 ```
