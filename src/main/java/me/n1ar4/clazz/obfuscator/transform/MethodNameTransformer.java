@@ -3,6 +3,8 @@ package me.n1ar4.clazz.obfuscator.transform;
 import me.n1ar4.clazz.obfuscator.Const;
 import me.n1ar4.clazz.obfuscator.asm.MethodNameClassVisitor;
 import me.n1ar4.clazz.obfuscator.core.ObfEnv;
+import me.n1ar4.clazz.obfuscator.loader.CustomClassLoader;
+import me.n1ar4.clazz.obfuscator.loader.CustomClassWriter;
 import me.n1ar4.log.LogManager;
 import me.n1ar4.log.Logger;
 import org.objectweb.asm.ClassReader;
@@ -15,7 +17,7 @@ import java.nio.file.Path;
 public class MethodNameTransformer {
     private static final Logger logger = LogManager.getLogger();
 
-    public static void transform() {
+    public static void transform(CustomClassLoader loader) {
         Path newClassPath = Const.TEMP_PATH;
         if (!Files.exists(newClassPath)) {
             logger.error("class not exist: {}", newClassPath.toString());
@@ -23,8 +25,8 @@ public class MethodNameTransformer {
         }
         try {
             ClassReader classReader = new ClassReader(Files.readAllBytes(newClassPath));
-            ClassWriter classWriter = new ClassWriter(classReader,
-                    ObfEnv.config.isAsmAutoCompute() ? Const.WriterASMOptions : 0);
+            ClassWriter classWriter = new CustomClassWriter(classReader,
+                    ObfEnv.config.isAsmAutoCompute() ? Const.WriterASMOptions : 0, loader);
             MethodNameClassVisitor changer = new MethodNameClassVisitor(classWriter);
             classReader.accept(changer, Const.ReaderASMOptions);
             Files.delete(newClassPath);

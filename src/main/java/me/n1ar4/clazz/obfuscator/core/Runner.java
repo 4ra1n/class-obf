@@ -7,6 +7,7 @@ import me.n1ar4.clazz.obfuscator.base.ClassReference;
 import me.n1ar4.clazz.obfuscator.base.MethodReference;
 import me.n1ar4.clazz.obfuscator.config.BaseCmd;
 import me.n1ar4.clazz.obfuscator.config.BaseConfig;
+import me.n1ar4.clazz.obfuscator.loader.CustomClassLoader;
 import me.n1ar4.clazz.obfuscator.transform.*;
 import me.n1ar4.clazz.obfuscator.utils.ASMUtil;
 import me.n1ar4.clazz.obfuscator.utils.ColorUtil;
@@ -16,6 +17,7 @@ import me.n1ar4.log.LogManager;
 import me.n1ar4.log.Logger;
 import org.objectweb.asm.ClassReader;
 
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -53,6 +55,19 @@ public class Runner {
             Files.write(Const.TEMP_PATH, Files.readAllBytes(path));
         } catch (Exception ex) {
             throw new RuntimeException(ex);
+        }
+
+        Path dirPath = Paths.get(CustomClassLoader.LIB_DIR);
+        try {
+            Files.createDirectory(dirPath);
+            logger.info("已成功创建 {} 目录", CustomClassLoader.LIB_DIR);
+            Files.write(dirPath.resolve(Paths.get("README.md")), ("# README\n" +
+                    "\n" +
+                    "一些情况下混淆可能需要接触依赖库\n" +
+                    "\n" +
+                    "请将依赖放在 `class-obf-lib` 目录中").getBytes(StandardCharsets.UTF_8));
+        } catch (Exception ignored) {
+            logger.warn("无法创建 {} 目录", CustomClassLoader.LIB_DIR);
         }
 
         addClass(path);
@@ -201,51 +216,53 @@ public class Runner {
                     ColorUtil.blue("#################################################################"));
         }
 
+        CustomClassLoader loader = new CustomClassLoader();
+
         if (config.isEnableReflect()) {
-            ReflectTransformer.transform();
+            ReflectTransformer.transform(loader);
             logger.info("run reflect transformer finish");
         }
 
         if (config.isEnableDeleteCompileInfo()) {
-            DeleteInfoTransformer.transform();
+            DeleteInfoTransformer.transform(loader);
             logger.info("run delete info transformer finish");
         }
 
         if (config.isEnableMethodName()) {
-            MethodNameTransformer.transform();
+            MethodNameTransformer.transform(loader);
             logger.info("run method name transformer finish");
         }
 
         if (config.isEnableFieldName()) {
-            FieldNameTransformer.transform();
+            FieldNameTransformer.transform(loader);
             logger.info("run field name transformer finish");
         }
 
         if (config.isEnableParamName()) {
-            ParameterTransformer.transform();
+            ParameterTransformer.transform(loader);
             logger.info("run parameter transformer finish");
         }
 
         if (config.isEnableXOR()) {
-            XORTransformer.transform();
+            XORTransformer.transform(loader);
             logger.info("run xor transformer finish");
         }
 
         if (config.isEnableAdvanceString()) {
-            StringArrayTransformer.transform();
+            StringArrayTransformer.transform(loader);
             if (config.isEnableXOR()) {
-                XORTransformer.transform();
+                XORTransformer.transform(loader);
             }
             logger.info("run string array transformer finish");
         }
 
         if (config.isEnableAES()) {
-            StringEncryptTransformer.transform(config.getAesKey(), config.getAesDecName());
+            StringEncryptTransformer.transform(config.getAesKey(), config.getAesDecName(), loader);
             logger.info("run string aes transformer finish");
         }
 
         if (config.isEnableJunk()) {
-            JunkCodeTransformer.transform(config);
+            JunkCodeTransformer.transform(config, loader);
             logger.info("run junk transformer finish");
         }
         if (!config.isQuiet()) {

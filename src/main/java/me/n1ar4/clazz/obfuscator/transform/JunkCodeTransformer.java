@@ -19,7 +19,7 @@ import java.nio.file.Path;
 public class JunkCodeTransformer {
     private static final Logger logger = LogManager.getLogger();
 
-    public static void transform(BaseConfig config) {
+    public static void transform(BaseConfig config, CustomClassLoader loader) {
         Path newClassPath = Const.TEMP_PATH;
         if (!Files.exists(newClassPath)) {
             logger.error("class not exist: {}", newClassPath.toString());
@@ -27,8 +27,6 @@ public class JunkCodeTransformer {
         }
         try {
             ClassReader classReader = new ClassReader(Files.readAllBytes(newClassPath));
-            CustomClassLoader loader = new CustomClassLoader();
-            // COMPUTE_FRAMES 需要修改 CLASSLOADER 来计算
             ClassWriter classWriter = new CustomClassWriter(classReader,
                     ObfEnv.config.isAsmAutoCompute() ? Const.WriterASMOptions : 0, loader);
             JunkCodeClassVisitor changer = new JunkCodeClassVisitor(classWriter, config);

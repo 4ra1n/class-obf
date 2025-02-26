@@ -17,14 +17,35 @@ public class AESTemplates {
         return new StringBuilder(base).reverse().toString();
     }
 
-    public static String decrypt(String encryptedData, String key) throws Exception {
-        key = new StringBuilder(key).reverse().toString();
-        encryptedData = new StringBuilder(encryptedData).reverse().toString();
-        SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(), "AES");
-        Cipher cipher = Cipher.getInstance("AES");
-        cipher.init(Cipher.DECRYPT_MODE, secretKey);
-        byte[] decryptedBytes = cipher.doFinal(Base64.getDecoder().decode(encryptedData));
-        return new String(decryptedBytes);
+    public static String decrypt(String encryptedData, String key) {
+        try {
+            key = new StringBuilder(key).reverse().toString();
+            encryptedData = new StringBuilder(encryptedData).reverse().toString();
+            SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(), "AES");
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.DECRYPT_MODE, secretKey);
+            Class<?> base64;
+            byte[] value = null;
+            try {
+                base64 = Class.forName("java.util.Base64");
+                Object decoder = base64.getMethod("getDecoder", null).invoke(base64, null);
+                value = (byte[]) decoder.getClass().getMethod("decode",
+                        new Class[]{String.class}).invoke(decoder, new Object[]{encryptedData});
+            } catch (Exception e) {
+                try {
+                    base64 = Class.forName("sun.misc.BASE64Decoder");
+                    Object decoder = base64.newInstance();
+                    value = (byte[]) decoder.getClass().getMethod("decodeBuffer",
+                            new Class[]{String.class}).invoke(decoder, new Object[]{encryptedData});
+                } catch (Exception ex) {
+                    return "";
+                }
+            }
+            byte[] decryptedBytes = cipher.doFinal(value);
+            return new String(decryptedBytes);
+        } catch (Exception ignored) {
+            return "";
+        }
     }
 
     public static void main(String[] args) {

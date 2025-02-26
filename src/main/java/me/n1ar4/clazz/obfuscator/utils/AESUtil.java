@@ -1,18 +1,30 @@
 package me.n1ar4.clazz.obfuscator.utils;
 
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.*;
 
 import static org.objectweb.asm.Opcodes.*;
 
 public class AESUtil {
     public static void addAesDecodeCode(ClassVisitor cv, String aesDecName) {
-        MethodVisitor methodVisitor = cv.visitMethod(
-                ACC_PUBLIC | ACC_STATIC,
-                aesDecName,
-                "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;",
-                null, new String[]{"java/lang/Exception"});
+        MethodVisitor methodVisitor = cv.visitMethod(ACC_PUBLIC | ACC_STATIC, aesDecName,
+                "(Ljava/lang/String;Ljava/lang/String;)Ljava/lang/String;", null, null);
         methodVisitor.visitCode();
+        Label label0 = new Label();
+        Label label1 = new Label();
+        Label label2 = new Label();
+        methodVisitor.visitTryCatchBlock(label0, label1, label2, "java/lang/Exception");
+        Label label3 = new Label();
+        Label label4 = new Label();
+        Label label5 = new Label();
+        methodVisitor.visitTryCatchBlock(label3, label4, label5, "java/lang/Exception");
+        Label label6 = new Label();
+        Label label7 = new Label();
+        Label label8 = new Label();
+        methodVisitor.visitTryCatchBlock(label6, label7, label8, "java/lang/Exception");
+        Label label9 = new Label();
+        Label label10 = new Label();
+        methodVisitor.visitTryCatchBlock(label9, label10, label8, "java/lang/Exception");
+        methodVisitor.visitLabel(label6);
         methodVisitor.visitTypeInsn(NEW, "java/lang/StringBuilder");
         methodVisitor.visitInsn(DUP);
         methodVisitor.visitVarInsn(ALOAD, 1);
@@ -41,18 +53,100 @@ public class AESUtil {
         methodVisitor.visitInsn(ICONST_2);
         methodVisitor.visitVarInsn(ALOAD, 2);
         methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "javax/crypto/Cipher", "init", "(ILjava/security/Key;)V", false);
-        methodVisitor.visitVarInsn(ALOAD, 3);
-        methodVisitor.visitMethodInsn(INVOKESTATIC, "java/util/Base64", "getDecoder", "()Ljava/util/Base64$Decoder;", false);
-        methodVisitor.visitVarInsn(ALOAD, 0);
-        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/util/Base64$Decoder", "decode", "(Ljava/lang/String;)[B", false);
-        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "javax/crypto/Cipher", "doFinal", "([B)[B", false);
+        methodVisitor.visitInsn(ACONST_NULL);
+        methodVisitor.visitVarInsn(ASTORE, 5);
+        methodVisitor.visitLabel(label0);
+        methodVisitor.visitLdcInsn("java.util.Base64");
+        methodVisitor.visitMethodInsn(INVOKESTATIC, "java/lang/Class", "forName", "(Ljava/lang/String;)Ljava/lang/Class;", false);
         methodVisitor.visitVarInsn(ASTORE, 4);
+        methodVisitor.visitVarInsn(ALOAD, 4);
+        methodVisitor.visitLdcInsn("getDecoder");
+        methodVisitor.visitInsn(ACONST_NULL);
+        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Class", "getMethod", "(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;", false);
+        methodVisitor.visitVarInsn(ALOAD, 4);
+        methodVisitor.visitInsn(ACONST_NULL);
+        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/reflect/Method", "invoke", "(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;", false);
+        methodVisitor.visitVarInsn(ASTORE, 6);
+        methodVisitor.visitVarInsn(ALOAD, 6);
+        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Object", "getClass", "()Ljava/lang/Class;", false);
+        methodVisitor.visitLdcInsn("decode");
+        methodVisitor.visitInsn(ICONST_1);
+        methodVisitor.visitTypeInsn(ANEWARRAY, "java/lang/Class");
+        methodVisitor.visitInsn(DUP);
+        methodVisitor.visitInsn(ICONST_0);
+        methodVisitor.visitLdcInsn(Type.getType(String.class));
+        methodVisitor.visitInsn(AASTORE);
+        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Class", "getMethod", "(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;", false);
+        methodVisitor.visitVarInsn(ALOAD, 6);
+        methodVisitor.visitInsn(ICONST_1);
+        methodVisitor.visitTypeInsn(ANEWARRAY, "java/lang/Object");
+        methodVisitor.visitInsn(DUP);
+        methodVisitor.visitInsn(ICONST_0);
+        methodVisitor.visitVarInsn(ALOAD, 0);
+        methodVisitor.visitInsn(AASTORE);
+        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/reflect/Method", "invoke", "(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;", false);
+        methodVisitor.visitTypeInsn(CHECKCAST, "[B");
+        methodVisitor.visitTypeInsn(CHECKCAST, "[B");
+        methodVisitor.visitVarInsn(ASTORE, 5);
+        methodVisitor.visitLabel(label1);
+        methodVisitor.visitJumpInsn(GOTO, label9);
+        methodVisitor.visitLabel(label2);
+        methodVisitor.visitFrame(Opcodes.F_FULL, 6, new Object[]{"java/lang/String", "java/lang/String", "javax/crypto/spec/SecretKeySpec", "javax/crypto/Cipher", Opcodes.TOP, "[B"}, 1, new Object[]{"java/lang/Exception"});
+        methodVisitor.visitVarInsn(ASTORE, 6);
+        methodVisitor.visitLabel(label3);
+        methodVisitor.visitLdcInsn("sun.misc.BASE64Decoder");
+        methodVisitor.visitMethodInsn(INVOKESTATIC, "java/lang/Class", "forName", "(Ljava/lang/String;)Ljava/lang/Class;", false);
+        methodVisitor.visitVarInsn(ASTORE, 4);
+        methodVisitor.visitVarInsn(ALOAD, 4);
+        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Class", "newInstance", "()Ljava/lang/Object;", false);
+        methodVisitor.visitVarInsn(ASTORE, 7);
+        methodVisitor.visitVarInsn(ALOAD, 7);
+        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Object", "getClass", "()Ljava/lang/Class;", false);
+        methodVisitor.visitLdcInsn("decodeBuffer");
+        methodVisitor.visitInsn(ICONST_1);
+        methodVisitor.visitTypeInsn(ANEWARRAY, "java/lang/Class");
+        methodVisitor.visitInsn(DUP);
+        methodVisitor.visitInsn(ICONST_0);
+        methodVisitor.visitLdcInsn(Type.getType(String.class));
+        methodVisitor.visitInsn(AASTORE);
+        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Class", "getMethod", "(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;", false);
+        methodVisitor.visitVarInsn(ALOAD, 7);
+        methodVisitor.visitInsn(ICONST_1);
+        methodVisitor.visitTypeInsn(ANEWARRAY, "java/lang/Object");
+        methodVisitor.visitInsn(DUP);
+        methodVisitor.visitInsn(ICONST_0);
+        methodVisitor.visitVarInsn(ALOAD, 0);
+        methodVisitor.visitInsn(AASTORE);
+        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/reflect/Method", "invoke", "(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;", false);
+        methodVisitor.visitTypeInsn(CHECKCAST, "[B");
+        methodVisitor.visitTypeInsn(CHECKCAST, "[B");
+        methodVisitor.visitVarInsn(ASTORE, 5);
+        methodVisitor.visitLabel(label4);
+        methodVisitor.visitJumpInsn(GOTO, label9);
+        methodVisitor.visitLabel(label5);
+        methodVisitor.visitFrame(Opcodes.F_FULL, 7, new Object[]{"java/lang/String", "java/lang/String", "javax/crypto/spec/SecretKeySpec", "javax/crypto/Cipher", Opcodes.TOP, "[B", "java/lang/Exception"}, 1, new Object[]{"java/lang/Exception"});
+        methodVisitor.visitVarInsn(ASTORE, 7);
+        methodVisitor.visitLdcInsn("");
+        methodVisitor.visitLabel(label7);
+        methodVisitor.visitInsn(ARETURN);
+        methodVisitor.visitLabel(label9);
+        methodVisitor.visitFrame(Opcodes.F_FULL, 6, new Object[]{"java/lang/String", "java/lang/String", "javax/crypto/spec/SecretKeySpec", "javax/crypto/Cipher", "java/lang/Class", "[B"}, 0, new Object[]{});
+        methodVisitor.visitVarInsn(ALOAD, 3);
+        methodVisitor.visitVarInsn(ALOAD, 5);
+        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "javax/crypto/Cipher", "doFinal", "([B)[B", false);
+        methodVisitor.visitVarInsn(ASTORE, 6);
         methodVisitor.visitTypeInsn(NEW, "java/lang/String");
         methodVisitor.visitInsn(DUP);
-        methodVisitor.visitVarInsn(ALOAD, 4);
+        methodVisitor.visitVarInsn(ALOAD, 6);
         methodVisitor.visitMethodInsn(INVOKESPECIAL, "java/lang/String", "<init>", "([B)V", false);
+        methodVisitor.visitLabel(label10);
         methodVisitor.visitInsn(ARETURN);
-        methodVisitor.visitMaxs(4, 5);
+        methodVisitor.visitLabel(label8);
+        methodVisitor.visitFrame(Opcodes.F_FULL, 2, new Object[]{"java/lang/String", "java/lang/String"}, 1, new Object[]{"java/lang/Exception"});
+        methodVisitor.visitVarInsn(ASTORE, 2);
+        methodVisitor.visitLdcInsn("");
+        methodVisitor.visitInsn(ARETURN);
+        methodVisitor.visitMaxs(6, 8);
         methodVisitor.visitEnd();
     }
 }
