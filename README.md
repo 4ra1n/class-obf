@@ -52,7 +52,7 @@
 
 生成配置文件：`java -jar class-obf.jar --generate`
 
-使用指定配置文件混淆当前目录的 `Test.class` 
+使用指定配置文件混淆当前目录的 `Test.class`
 
 ```shell
 java -jar class-obf.jar --config config.yaml --input Test.class
@@ -125,13 +125,13 @@ public class Test {
         <url>https://jitpack.io</url>
     </repository>
 </repositories>
-<!-- 引入项目 -->
+        <!-- 引入项目 -->
 <dependencies>
-    <dependency>
-        <groupId>com.github.jar-analyzer</groupId>
-        <artifactId>class-obf</artifactId>
-        <version>1.5.0</version>
-    </dependency>
+<dependency>
+    <groupId>com.github.jar-analyzer</groupId>
+    <artifactId>class-obf</artifactId>
+    <version>1.5.0</version>
+</dependency>
 </dependencies>
 ```
 
@@ -139,7 +139,9 @@ public class Test {
 
 ```java
 String data = ClassObf.quickRun("Test.class");
-System.out.println(data);
+System.out.
+
+println(data);
 ```
 
 自行进行配置进阶写法
@@ -151,10 +153,18 @@ BaseConfig config = new BaseConfig();
 ClassObf classObf = new ClassObf(config);
 // 支持三种重载：输入文件字符串，输入文件 PATH 对象，输入 byte[] 数据
 Result result = classObf.run("Test.class");
-if (result.getMessage().equals(Result.SUCCESS)) {
-    // result.getData() 即可得到混淆后的 byte[] 字节码
-    System.out.println(Base64.getEncoder().encodeToString(result.getData()));
-}
+if(result.
+
+getMessage().
+
+equals(Result.SUCCESS)){
+        // result.getData() 即可得到混淆后的 byte[] 字节码
+        System.out.
+
+println(Base64.getEncoder().
+
+encodeToString(result.getData()));
+        }
 ```
 
 如果你不想输出一大堆调试信息，可以这样设置
@@ -296,6 +306,23 @@ public class Test extends ClassLoader {
     }
 }
 ```
+
+## class-obf-pro
+
+class-obf-pro 和 class-obf-ultra 版本正在开发中 暂时不会公开
+
+| 功能                  | class-obf 开源版 | class-obf-pro | class-obf-ultra |
+|---------------------|---------------|---------------|-----------------|
+| 支持方法字段名加入换行         | ❌             | ✅             | ✅               |
+| 构造方法静态代码支持隐藏        | ❌             | ✅             | ✅               |
+| 字段名混淆黑名单的配置         | ❌             | ✅             | ✅               |
+| 字符串混淆运行时 AES 解密     | ✅             | ✅             | ✅               |
+| 字符串混淆运行时自研算法解密      | ❌             | ✅             | ✅               |
+| 字符串混淆加入不可见字符和特殊福报   | ❌             | ✅             | ✅               |
+| 方法支持拓展无意义参数并修改引用    | ❌             | ✅             | ✅               |
+| 方法拓展后支持拓展参数无意义计算和调用 | ❌             | ❌             | ✅               |
+| 支持首次混淆生成的解密方法进一步混淆  | ❌             | ✅             | ✅               |
+| 作者一对一人工回答混淆问题       | ❌             | ❌             | ✅               |
 
 ## Thanks
 
