@@ -110,24 +110,14 @@ public class Test {
 
 你可以使用代码方式调用（参考 `test` 目录的 `TestQuick/TestAPI` 文件）
 
-可以使用 `jitpack` 或者自行下载后添加到 `classpath`
+该项目在 `1.6.0` 版本上传了 `Maven` 中央仓库
 
 ```xml
-<!-- 添加仓库 -->
-<repositories>
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
-</repositories>
-        <!-- 引入项目 -->
-<dependencies>
 <dependency>
-    <groupId>com.github.jar-analyzer</groupId>
+    <groupId>io.github.4ra1n</groupId>
     <artifactId>class-obf</artifactId>
-    <version>1.5.0</version>
+    <version>1.6.0</version>
 </dependency>
-</dependencies>
 ```
 
 最快速使用（使用默认配置输入文件返回 `base64` 字节码）

@@ -38,5 +38,9 @@ build/
 .DS_Store
 
 .idea/
+class-obf-lib/
+class-obf-output/
 *.jar
 *.exe
+maven.xml
+maven.data

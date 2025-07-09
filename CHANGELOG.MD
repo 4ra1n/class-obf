@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 1.6.0
+
+上传 `Maven` 中央仓库，可以直接导入使用
+
+https://central.sonatype.com/artifact/io.github.4ra1n/class-obf
+
+```xml
+<dependency>
+    <groupId>io.github.4ra1n</groupId>
+    <artifactId>class-obf</artifactId>
+    <version>1.6.0</version>
+</dependency>
+```
+
+更新日志：
+
+- [重要] 上传 `Maven` 中央仓库
+
+感谢以下用户的贡献:
+
+- 4ra1n (https://github.com/4ra1n)
+
 ## 1.5.0
 
 从该版本开始，运行混淆会自动创建一个 `class-obf-lib` 目录
