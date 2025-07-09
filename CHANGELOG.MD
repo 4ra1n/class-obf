@@ -1,5 +1,15 @@
 # CHANGELOG
 
+## 1.6.1
+
+```xml
+<dependency>
+    <groupId>io.github.4ra1n</groupId>
+    <artifactId>class-obf</artifactId>
+    <version>1.6.1</version>
+</dependency>
+```
+
 ## 1.6.0
 
 上传 `Maven` 中央仓库，可以直接导入使用

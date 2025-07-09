@@ -116,7 +116,7 @@ public class Test {
 <dependency>
     <groupId>io.github.4ra1n</groupId>
     <artifactId>class-obf</artifactId>
-    <version>1.6.0</version>
+    <version>1.6.1</version>
 </dependency>
 ```
 
