@@ -8,7 +8,7 @@
 
 ### 说明
 
-我们所有的工作都会放在 [GitHub](https://github.com/jar-analyzer/class-obf) 上
+我们所有的工作都会放在 [GitHub](https://github.com/4ra1n/class-obf) 上
 
 不管是核心团队的成员（目前只有我 @4ra1n 自己）还是外部贡献者的 `pull request` 都需要经过 `review`
 

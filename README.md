@@ -4,12 +4,12 @@
 
 <img alt="gitleaks badge" src="https://img.shields.io/badge/protected%20by-gitleaks-blue">
 
-![](https://img.shields.io/github/downloads/jar-analyzer/class-obf/total)
-![](https://img.shields.io/github/v/release/jar-analyzer/class-obf)
+![](https://img.shields.io/github/downloads/4ra1n/class-obf/total)
+![](https://img.shields.io/github/v/release/4ra1n/class-obf)
 
-![](https://github.com/jar-analyzer/class-obf/workflows/maven%20check/badge.svg)
-![](https://github.com/jar-analyzer/class-obf/workflows/leak%20check/badge.svg)
-![](https://github.com/jar-analyzer/class-obf/workflows/truffle%20check/badge.svg)
+![](https://github.com/4ra1n/class-obf/workflows/maven%20check/badge.svg)
+![](https://github.com/4ra1n/class-obf/workflows/leak%20check/badge.svg)
+![](https://github.com/4ra1n/class-obf/workflows/truffle%20check/badge.svg)
 
 `class-obf` 项目全称 `Class Obfuscator` 项目，专门用来混淆单个 `Class` 文件
 
@@ -313,6 +313,6 @@ public class Test extends ClassLoader {
 
 <div align="center">
 
-<img src="https://api.star-history.com/svg?repos=jar-analyzer/class-obf&type=Date" width="600" height="400" alt="Star History Chart" valign="middle">
+<img src="https://api.star-history.com/svg?repos=4ra1n/class-obf&type=Date" width="600" height="400" alt="Star History Chart" valign="middle">
 
 </div>
