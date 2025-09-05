@@ -41,7 +41,15 @@
 如果你有 `Jar` 混淆的需求：
 
 - 可以把核心业务提取到一个 `class` 中通过该工具保护好这一个 `class`
-- 尝试使用 [jar-obfuscator](https://github.com/jar-analyzer/jar-obfuscator) 工具（该工具 `v2` 版本正在开发中）
+- 使用 `https://allatori.com/` 商业化混淆器
+- 使用 `https://www.zelix.com/` 商业化混淆器
+
+`class-obf` 相比商业化混淆器：
+
+- 混淆强度不如商业化混淆器
+- 完全开源，有功能问题可以提 `PR` 贡献
+- 配置简单，配置的参数远少于商业化混淆器
+- 针对单个 `class` 混淆能力不弱，一般情况足够
 
 ## 快速开始
 
