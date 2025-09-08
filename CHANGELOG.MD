@@ -1,5 +1,27 @@
 # CHANGELOG
 
+## 1.7.1
+
+更新日志：
+
+- todo
+
+感谢以下用户的贡献:
+
+- 4ra1n (https://github.com/4ra1n)
+
+你可以从 `Maven` 中央仓库获得
+
+```xml
+<dependency>
+    <groupId>io.github.4ra1n</groupId>
+    <artifactId>class-obf</artifactId>
+    <version>1.7.1</version>
+</dependency>
+```
+
+可供下载的文件都由 `Github Actions` 构建，使用 `java -jar class-obf.jar` 启动
+
 ## 1.7.0
 
 更新日志：
