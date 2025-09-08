@@ -15,15 +15,7 @@
 
 示例图：混淆前 -> 混淆后
 
-![](img/000.png)
-
-可以自定义中文混淆字符，以及方法隐藏等技巧
-
-![](img/004.png)
-
-从 `1.2.0` 版本开始支持集中提取字符串后 `AES` 加密运行时解密
-
-![](img/007.png)
+![](img/009.png)
 
 本项目已深度集成到 `web-chains` 项目中 (https://github.com/Java-Chains/web-chains)
 
@@ -81,28 +73,6 @@ public class Test {
     }
 }
 ```
-
-你可以随意搭配配置文件，得到以下几种混淆结果
-
-效果一（默认配置）
-
-![](img/001.png)
-
-效果二（使用最高级别的花指令参数）
-
-![](img/002.png)
-
-自定义混淆字符（例如使用中文）
-
-![](img/003.png)
-
-开启隐藏方法和字段功能（反编译看不到方法）
-
-![](img/004.png)
-
-但是！可以成功执行
-
-![](img/005.png)
 
 使用 `--std-output` 参数将会导出标准的 `class` 文件以及对应的包名
 
@@ -231,20 +201,17 @@ enableHideField: false
 # 可以防止大部分 IDEA 版本反编译
 enableHideMethod: false
 
-# 是否将 JVM INVOKE 指令改成反射调用
-# 注意：该功能会明显影响执行效率
-# 优点：经过该混淆后会更加难以分析
-# 缺点：该功能未经过完善测试不稳定
-enableReflect: false
-# INVOKEVIRTUAL 转换
-enableReflectVirtual: false
-# INVOKESTATIC 转换
-enableReflectStatic: false
-# INVOKESPECIAL 转换
-enableReflectSpecial: false
-# INVOKEINTERFACE 转换
-enableReflectInterface: false
-
+# 参数拓展混淆
+# void a(int a) 可以拓展为 void a(int a,int b,int c,int d)
+# 其中 b c d 都是无用参数
+# 其中 int 类型不是固定的
+# 会从 int bool byte char short long float double 中随机
+enableExpandMethod: true
+# 拓展多少个参数 默认 3 个
+expandParamNum: 3
+# expand 操作只会对白名单方法名进行混淆
+expandMethodList:
+  - "test"
 ```
 
 ## test
@@ -289,33 +256,6 @@ public class Test extends ClassLoader {
     }
 }
 ```
-
-## class-obf 开发进度
-
-| 功能                    | 开发进度 | 
-|-----------------------|------|
-| 方法名及引用混淆              | ✅    | 
-| 字段名及引用混淆              | ✅    |
-| 参数名及引用混淆              | ✅    |
-| 字符串统一提取混淆             | ✅    | 
-| 整型常量异或混淆              | ✅    | 
-| 多级别可精细配置的垃圾指令混淆       | ✅    | 
-| 已有方法名和字段名的隐藏混淆        | ✅    | 
-| INVOKE 指令修改反射调用(beta) | ✅    | 
-| 字符串混淆运行时 AES 解密       | ✅    | 
-| 字符串混淆运行时自研算法解密        | ❌    | 
-| 支持方法字段名加入换行           | ❌    | 
-| 构造方法静态代码支持隐藏          | ❌    | 
-| 字段名混淆黑名单的配置           | ❌    | 
-| 字符串混淆加入不可见字符和特殊字符     | ❌    | 
-| 方法支持拓展无意义参数并修改引用      | ❌    | 
-| 方法支持精细配置拓展无意义参数个数     | ❌    | 
-| 方法支持精细配置拓展无意义参数方法白名单  | ❌    | 
-| 方法拓展后支持拓展参数无意义计算和调用   | ❌    | 
-| 支持首次混淆生成的解密方法进一步混淆    | ❌    | 
-| 字符串动态解密 KEY 支持隐藏      | ❌    | 
-| 字符串动态解密方法支持隐藏         | ❌    |      
-| 支持生成超大字符串分解代码         | ❌    |
 
 ## Star
 
