@@ -65,17 +65,3 @@ enableHideField: false
 # 是否开启方法隐藏
 # 可以防止大部分 IDEA 版本反编译
 enableHideMethod: false
-
-# 是否将 JVM INVOKE 指令改成反射调用
-# 注意：该功能会明显影响执行效率
-# 优点：经过该混淆后会更加难以分析
-# 缺点：该功能未经过完善测试不稳定
-enableReflect: false
-# INVOKEVIRTUAL 转换
-enableReflectVirtual: false
-# INVOKESTATIC 转换
-enableReflectStatic: false
-# INVOKESPECIAL 转换
-enableReflectSpecial: false
-# INVOKEINTERFACE 转换
-enableReflectInterface: false

@@ -118,12 +118,6 @@ public class BaseConfig {
         config.setObfuscateChars(new String[]{"i", "l", "L", "1", "I"});
         config.setAdvanceStringName("iii");
         config.setMethodBlackList(new String[]{"main"});
-        // reflect 配置默认关闭
-        config.setEnableReflect(false);
-        config.setEnableReflectInterface(false);
-        config.setEnableReflectSpecial(false);
-        config.setEnableReflectVirtual(false);
-        config.setEnableReflectStatic(false);
         return config;
     }
 
@@ -171,16 +165,6 @@ public class BaseConfig {
                 ColorUtil.green(String.valueOf(junkLevel)));
         System.out.println(ColorUtil.cyan("[Junk Obfuscate] Max Number in One Class -> ") +
                 ColorUtil.green(String.valueOf(maxJunkOneClass)));
-        System.out.println(ColorUtil.yellow("Enable Reflection -> ") +
-                ColorUtil.green(String.valueOf(enableReflect)));
-        System.out.println(ColorUtil.cyan("[REFLECTION] Enable Reflection INVOKESPECIAL -> ") +
-                ColorUtil.green(String.valueOf(enableReflectSpecial)));
-        System.out.println(ColorUtil.cyan("[REFLECTION] Enable Reflection INVOKESTATIC -> ") +
-                ColorUtil.green(String.valueOf(enableReflectStatic)));
-        System.out.println(ColorUtil.cyan("[REFLECTION] Enable Reflection INVOKEVIRTUAL -> ") +
-                ColorUtil.green(String.valueOf(enableReflectVirtual)));
-        System.out.println(ColorUtil.cyan("[REFLECTION] Enable Reflection INVOKEINTERFACE -> ") +
-                ColorUtil.green(String.valueOf(enableReflectInterface)));
     }
 
     public boolean isQuiet() {
@@ -357,45 +341,5 @@ public class BaseConfig {
 
     public void setObfuscateChars(String[] obfuscateChars) {
         this.obfuscateChars = obfuscateChars;
-    }
-
-    public boolean isEnableReflect() {
-        return enableReflect;
-    }
-
-    public void setEnableReflect(boolean enableReflect) {
-        this.enableReflect = enableReflect;
-    }
-
-    public boolean isEnableReflectVirtual() {
-        return enableReflectVirtual;
-    }
-
-    public void setEnableReflectVirtual(boolean enableReflectVirtual) {
-        this.enableReflectVirtual = enableReflectVirtual;
-    }
-
-    public boolean isEnableReflectStatic() {
-        return enableReflectStatic;
-    }
-
-    public void setEnableReflectStatic(boolean enableReflectStatic) {
-        this.enableReflectStatic = enableReflectStatic;
-    }
-
-    public boolean isEnableReflectSpecial() {
-        return enableReflectSpecial;
-    }
-
-    public void setEnableReflectSpecial(boolean enableReflectSpecial) {
-        this.enableReflectSpecial = enableReflectSpecial;
-    }
-
-    public boolean isEnableReflectInterface() {
-        return enableReflectInterface;
-    }
-
-    public void setEnableReflectInterface(boolean enableReflectInterface) {
-        this.enableReflectInterface = enableReflectInterface;
     }
 }

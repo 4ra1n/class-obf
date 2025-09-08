@@ -218,11 +218,6 @@ public class Runner {
 
         CustomClassLoader loader = new CustomClassLoader();
 
-        if (config.isEnableReflect()) {
-            ReflectTransformer.transform(loader);
-            logger.info("run reflect transformer finish");
-        }
-
         if (config.isEnableDeleteCompileInfo()) {
             DeleteInfoTransformer.transform(loader);
             logger.info("run delete info transformer finish");
