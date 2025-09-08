@@ -218,9 +218,9 @@ public class Runner {
 
         CustomClassLoader loader = new CustomClassLoader();
 
-        if (config.isEnableDeleteCompileInfo()) {
-            DeleteInfoTransformer.transform(loader);
-            logger.info("run delete info transformer finish");
+        if (config.isEnableExpandMethod()) {
+            ParamObfTransformer.transform(loader);
+            logger.info("run param obf transformer finish");
         }
 
         if (config.isEnableMethodName()) {
@@ -260,6 +260,12 @@ public class Runner {
             JunkCodeTransformer.transform(config, loader);
             logger.info("run junk transformer finish");
         }
+
+        if (config.isEnableDeleteCompileInfo()) {
+            DeleteInfoTransformer.transform(loader);
+            logger.info("run delete info transformer finish");
+        }
+
         if (!config.isQuiet()) {
             System.out.println(
                     ColorUtil.blue("###################### ALL OBFUSCATE FINISH ######################"));

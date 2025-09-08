@@ -58,7 +58,7 @@ public class MethodReference {
     public static class Handle {
         private final ClassReference.Handle classReference;
         private final String name;
-        private final String desc;
+        private String desc;
 
         public Handle(ClassReference.Handle classReference, String name, String desc) {
             this.classReference = classReference;
@@ -76,6 +76,10 @@ public class MethodReference {
 
         public String getDesc() {
             return desc;
+        }
+
+        public void setDesc(String desc) {
+            this.desc = desc;
         }
 
         @Override

@@ -30,18 +30,16 @@ public class BaseConfig {
 
     private boolean ignorePublic;
 
-    // beta: invoke -> reflect
-    private boolean enableReflect;
-    private boolean enableReflectVirtual;
-    private boolean enableReflectStatic;
-    private boolean enableReflectSpecial;
-    private boolean enableReflectInterface;
-
     private String aesKey;
     private String aesDecName;
     private String aesKeyField;
+
     private String[] obfuscateChars;
     private String[] methodBlackList;
+
+    private boolean enableExpandMethod;
+    private int expandParamNum;
+    private String[] expandMethodList;
 
     /**
      * 如果配置没问题可以启动就返回 true
@@ -81,12 +79,6 @@ public class BaseConfig {
         if (maxJunkOneClass < 1 || maxJunkOneClass > 10000) {
             System.out.println(ColorUtil.red("[ERROR] max junk must be between 1 and 10000"));
             return false;
-        }
-        if (!enableReflect) {
-            if (enableReflectInterface || enableReflectVirtual || enableReflectStatic || enableReflectSpecial) {
-                System.out.println(ColorUtil.red("[ERROR] you must enable reflect first"));
-                return false;
-            }
         }
         return true;
     }
@@ -341,5 +333,30 @@ public class BaseConfig {
 
     public void setObfuscateChars(String[] obfuscateChars) {
         this.obfuscateChars = obfuscateChars;
+    }
+
+
+    public int getExpandParamNum() {
+        return expandParamNum;
+    }
+
+    public void setExpandParamNum(int expandParamNum) {
+        this.expandParamNum = expandParamNum;
+    }
+
+    public boolean isEnableExpandMethod() {
+        return enableExpandMethod;
+    }
+
+    public void setEnableExpandMethod(boolean enableExpandMethod) {
+        this.enableExpandMethod = enableExpandMethod;
+    }
+
+    public String[] getExpandMethodList() {
+        return expandMethodList;
+    }
+
+    public void setExpandMethodList(String[] expandMethodList) {
+        this.expandMethodList = expandMethodList;
     }
 }

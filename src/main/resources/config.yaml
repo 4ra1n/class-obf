@@ -65,3 +65,15 @@ enableHideField: false
 # 是否开启方法隐藏
 # 可以防止大部分 IDEA 版本反编译
 enableHideMethod: false
+
+# 参数拓展混淆
+# void a(int a) 可以拓展为 void a(int a,int b,int c,int d)
+# 其中 b c d 都是无用参数
+# 其中 int 类型不是固定的
+# 会从 int bool byte char short long float double 中随机
+enableExpandMethod: true
+# 拓展多少个参数 默认 3 个
+expandParamNum: 3
+# expand 操作只会对白名单方法名进行混淆
+expandMethodList:
+  - "test"
