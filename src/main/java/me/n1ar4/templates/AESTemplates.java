@@ -9,10 +9,10 @@ public class AESTemplates {
 
     public static String encrypt(String data, String key) throws Exception {
         key = new StringBuilder(key).reverse().toString();
-        SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(), "AES");
+        SecretKeySpec secretKey = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
         Cipher cipher = Cipher.getInstance("AES");
         cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-        byte[] encryptedBytes = cipher.doFinal(data.getBytes());
+        byte[] encryptedBytes = cipher.doFinal(data.getBytes("UTF-8"));
         String base = Base64.getEncoder().encodeToString(encryptedBytes);
         return new StringBuilder(base).reverse().toString();
     }
@@ -21,7 +21,7 @@ public class AESTemplates {
         try {
             key = new StringBuilder(key).reverse().toString();
             encryptedData = new StringBuilder(encryptedData).reverse().toString();
-            SecretKeySpec secretKey = new SecretKeySpec(key.getBytes(), "AES");
+            SecretKeySpec secretKey = new SecretKeySpec(key.getBytes("UTF-8"), "AES");
             Cipher cipher = Cipher.getInstance("AES");
             cipher.init(Cipher.DECRYPT_MODE, secretKey);
             Class<?> base64;
@@ -42,7 +42,7 @@ public class AESTemplates {
                 }
             }
             byte[] decryptedBytes = cipher.doFinal(value);
-            return new String(decryptedBytes);
+            return new String(decryptedBytes, "UTF-8");
         } catch (Exception ignored) {
             return "";
         }

@@ -42,7 +42,8 @@ public class AESUtil {
         methodVisitor.visitTypeInsn(NEW, "javax/crypto/spec/SecretKeySpec");
         methodVisitor.visitInsn(DUP);
         methodVisitor.visitVarInsn(ALOAD, 1);
-        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "getBytes", "()[B", false);
+        methodVisitor.visitLdcInsn("UTF-8");
+        methodVisitor.visitMethodInsn(INVOKEVIRTUAL, "java/lang/String", "getBytes", "(Ljava/lang/String;)[B", false);
         methodVisitor.visitLdcInsn("AES");
         methodVisitor.visitMethodInsn(INVOKESPECIAL, "javax/crypto/spec/SecretKeySpec", "<init>", "([BLjava/lang/String;)V", false);
         methodVisitor.visitVarInsn(ASTORE, 2);
@@ -138,7 +139,8 @@ public class AESUtil {
         methodVisitor.visitTypeInsn(NEW, "java/lang/String");
         methodVisitor.visitInsn(DUP);
         methodVisitor.visitVarInsn(ALOAD, 6);
-        methodVisitor.visitMethodInsn(INVOKESPECIAL, "java/lang/String", "<init>", "([B)V", false);
+        methodVisitor.visitLdcInsn("UTF-8");
+        methodVisitor.visitMethodInsn(INVOKESPECIAL, "java/lang/String", "<init>", "([BLjava/lang/String;)V", false);
         methodVisitor.visitLabel(label10);
         methodVisitor.visitInsn(ARETURN);
         methodVisitor.visitLabel(label8);
