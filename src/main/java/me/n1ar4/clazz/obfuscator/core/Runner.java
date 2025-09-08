@@ -277,11 +277,6 @@ public class Runner {
                 logger.info("class obfuscate finish and write new class file");
             } catch (Exception ignored) {
             }
-            try {
-                Files.delete(Const.TEMP_PATH);
-                logger.info("class obfuscate finish and delete temp file");
-            } catch (Exception ignored) {
-            }
         } else {
             // 标准输出
             try {
@@ -305,13 +300,17 @@ public class Runner {
                     Path classFile = packDir.resolve(String.format("%s.class", className));
                     Files.write(classFile, result);
                 }
-
                 logger.info("create dir {} and class {} finish", packageName, className);
             } catch (Exception ex) {
                 logger.error("create class output error: {}", ex.getMessage());
                 logger.info("please delete the class-obf-output dir");
                 logger.info("可能是目标文件或目录已存在：请删除 class-obf-output 目录");
             }
+        }
+        try {
+            Files.delete(Const.TEMP_PATH);
+            logger.info("class obfuscate finish and delete temp file");
+        } catch (Exception ignored) {
         }
     }
 }
