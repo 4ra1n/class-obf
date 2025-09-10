@@ -17,6 +17,8 @@
 
 ![](img/009.png)
 
+![](img/010.png)
+
 本项目已深度集成到 `web-chains` 项目中 (https://github.com/vulhub/java-chains)
 
 ![](img/006.png)
@@ -165,6 +167,9 @@ advanceStringName: ME_N1AR4_CLAZZ_OBF_PROJECT
 enableJunk: true
 # 花指令混淆级别 1-5
 junkLevel: 3
+# 花指令可以使用常见的随机字符
+# 也可以使用恶意的字符生成更具有迷惑的代码
+enableEvilString: true
 # 一个类中花指令最多数量
 maxJunkOneClass: 1000
 
@@ -186,6 +191,11 @@ expandParamNum: 3
 # expand 操作只会对白名单方法名进行混淆
 expandMethodList:
   - "test"
+
+# 使用恶意的字符替换方法名 字段名 参数名等
+# 注意：如果开启了该项 obfuscateChars 将无效
+# 注意：该功能不确定在所有版本 JAVA 上可以稳定运行
+useEvilCharInstead: true
 ```
 
 ## 如何测试

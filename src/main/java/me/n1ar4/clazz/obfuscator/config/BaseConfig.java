@@ -22,10 +22,11 @@ public class BaseConfig {
 
     private boolean enableXOR;
     private boolean enableAES;
-    private boolean enableJunk;
     private boolean enableDeleteCompileInfo;
 
+    private boolean enableJunk;
     private int junkLevel;
+    private boolean enableEvilString;
     private int maxJunkOneClass;
 
     private boolean ignorePublic;
@@ -40,6 +41,8 @@ public class BaseConfig {
     private boolean enableExpandMethod;
     private int expandParamNum;
     private String[] expandMethodList;
+
+    private boolean useEvilCharInstead;
 
     /**
      * 如果配置没问题可以启动就返回 true
@@ -110,6 +113,10 @@ public class BaseConfig {
         config.setObfuscateChars(new String[]{"i", "l", "L", "1", "I"});
         config.setAdvanceStringName("iii");
         config.setMethodBlackList(new String[]{"main"});
+        // 默认不开启多余功能
+        config.setEnableExpandMethod(false);
+        config.setUseEvilCharInstead(false);
+        config.setEnableEvilString(false);
         return config;
     }
 
@@ -157,6 +164,16 @@ public class BaseConfig {
                 ColorUtil.green(String.valueOf(junkLevel)));
         System.out.println(ColorUtil.cyan("[Junk Obfuscate] Max Number in One Class -> ") +
                 ColorUtil.green(String.valueOf(maxJunkOneClass)));
+        System.out.println(ColorUtil.cyan("[Junk Obfuscate] Enable Evil String -> ") +
+                ColorUtil.green(String.valueOf(enableEvilString)));
+        System.out.println(ColorUtil.yellow("Enable Expand Method -> ") +
+                ColorUtil.green(String.valueOf(enableExpandMethod)));
+        System.out.println(ColorUtil.cyan("[Expand Method] Expand Param Num -> ") +
+                ColorUtil.green(String.valueOf(expandParamNum)));
+        System.out.println(ColorUtil.cyan("[Expand Method] Expand Method List -> ") +
+                ColorUtil.green(Arrays.toString(expandMethodList)));
+        System.out.println(ColorUtil.yellow("Use Evil Char Instead -> ") +
+                ColorUtil.green(String.valueOf(useEvilCharInstead)));
     }
 
     public boolean isQuiet() {
@@ -358,5 +375,21 @@ public class BaseConfig {
 
     public void setExpandMethodList(String[] expandMethodList) {
         this.expandMethodList = expandMethodList;
+    }
+
+    public boolean isEnableEvilString() {
+        return enableEvilString;
+    }
+
+    public void setEnableEvilString(boolean enableEvilString) {
+        this.enableEvilString = enableEvilString;
+    }
+
+    public boolean isUseEvilCharInstead() {
+        return useEvilCharInstead;
+    }
+
+    public void setUseEvilCharInstead(boolean useEvilCharInstead) {
+        this.useEvilCharInstead = useEvilCharInstead;
     }
 }

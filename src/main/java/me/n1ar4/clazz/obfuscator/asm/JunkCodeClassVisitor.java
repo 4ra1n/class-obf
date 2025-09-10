@@ -2,6 +2,7 @@ package me.n1ar4.clazz.obfuscator.asm;
 
 import me.n1ar4.clazz.obfuscator.Const;
 import me.n1ar4.clazz.obfuscator.config.BaseConfig;
+import me.n1ar4.clazz.obfuscator.utils.EvilObfUtil;
 import me.n1ar4.clazz.obfuscator.utils.JunkUtil;
 import me.n1ar4.clazz.obfuscator.utils.RandomUtil;
 import me.n1ar4.jrandom.core.JRandom;
@@ -141,7 +142,11 @@ public class JunkCodeClassVisitor extends ClassVisitor {
 
                 mv.visitTypeInsn(Opcodes.NEW, "java/lang/String");
                 mv.visitInsn(Opcodes.DUP);
-                mv.visitLdcInsn(JRandom.getInstance().randomString(16));
+                if (config.isEnableEvilString()) {
+                    mv.visitLdcInsn(EvilObfUtil.randomString(16));
+                } else {
+                    mv.visitLdcInsn(JRandom.getInstance().randomString(16));
+                }
                 mv.visitMethodInsn(Opcodes.INVOKESPECIAL, "java/lang/String", "<init>",
                         "(Ljava/lang/String;)V", false);
                 mv.visitInsn(Opcodes.POP);
@@ -155,7 +160,11 @@ public class JunkCodeClassVisitor extends ClassVisitor {
                 mv.visitLabel(ifLabel);
                 mv.visitFieldInsn(Opcodes.GETSTATIC, "java/lang/System",
                         "out", "Ljava/io/PrintStream;");
-                mv.visitLdcInsn(JRandom.getInstance().randomString(16));
+                if (config.isEnableEvilString()) {
+                    mv.visitLdcInsn(EvilObfUtil.randomString(16));
+                } else {
+                    mv.visitLdcInsn(JRandom.getInstance().randomString(16));
+                }
                 mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "java/io/PrintStream",
                         "println", "(Ljava/lang/String;)V", false);
                 mv.visitJumpInsn(Opcodes.GOTO, endLabel);
