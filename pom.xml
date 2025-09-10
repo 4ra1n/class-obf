@@ -6,14 +6,13 @@
 
     <groupId>io.github.4ra1n</groupId>
     <artifactId>class-obf</artifactId>
-    <version>1.7.0</version>
+    <version>1.8.0</version>
     <packaging>jar</packaging>
     <description>
         A comprehensive Java class obfuscation tool that supports
         method/field/parameter reference analysis and renaming obfuscation,
         string extraction with AES encryption and runtime decryption,
-        integer XOR obfuscation, junk code and control flow obfuscation,
-        method and field hiding, INVOKE instruction to reflection call transformation.
+        integer XOR obfuscation, junk code, method and field hiding,
         Features simple configuration and easy-to-use interface.
     </description>
     <name>class-obf</name>
