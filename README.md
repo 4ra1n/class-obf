@@ -17,9 +17,11 @@
 
 ![](img/009.png)
 
-本项目已深度集成到 `web-chains` 项目中 (https://github.com/Java-Chains/web-chains)
+本项目已深度集成到 `web-chains` 项目中 (https://github.com/vulhub/java-chains)
 
 ![](img/006.png)
+
+本项目另外被多个 **非开源安全工具** 集成和使用，逐步完善中
 
 ## 背景
 
