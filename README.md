@@ -13,11 +13,15 @@
 
 `class-obf` 项目全称 `Class Obfuscator` 项目，专门用来混淆单个 `Class` 文件
 
-示例图：混淆前 -> 混淆后
+示例图：混淆前 -> 混淆后（最基础方案）
 
 ![](img/009.png)
 
 ![](img/010.png)
+
+基于错误的注解可以实现反编译时显示图案（以下图片为 `jadx` 反编译截图）
+
+![](img/011.png)
 
 本项目已深度集成到 `web-chains` 项目中 (https://github.com/vulhub/java-chains)
 
@@ -169,7 +173,7 @@ enableJunk: true
 junkLevel: 3
 # 花指令可以使用常见的随机字符
 # 也可以使用恶意的字符生成更具有迷惑的代码
-enableEvilString: true
+enableEvilString: false
 # 一个类中花指令最多数量
 maxJunkOneClass: 1000
 
@@ -195,7 +199,13 @@ expandMethodList:
 # 使用恶意的字符替换方法名 字段名 参数名等
 # 注意：如果开启了该项 obfuscateChars 将无效
 # 注意：该功能不确定在所有版本 JAVA 上可以稳定运行
-useEvilCharInstead: true
+useEvilCharInstead: false
+
+# 是否使用恶意的注解进行混淆
+# 特点：可能导致 CLASS 文件无法被 IDEA 反编译
+enableBadAnno: true
+# 恶意注解显示的文本 从本地文件读取
+badAnnoTextFile: bad-anno.txt
 ```
 
 ## 如何测试

@@ -4,13 +4,14 @@ import java.util.Random;
 
 public class EvilObfUtil {
     public static String randomString(int depth) {
-        int length = (new Random().nextInt(5 ) + 5) * depth;
+        int length = (new Random().nextInt(5) + 5) * depth;
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < length; i++) {
             stringBuilder.append(EvilObfUtil.dic[new Random().nextInt(EvilObfUtil.dic.length - 1)]);
         }
         return stringBuilder.toString();
     }
+
     public static String[] dic = ("۫۫۬\n" +
             "ۨۚۢ\n" +
             "ۘۨۜ\n" +

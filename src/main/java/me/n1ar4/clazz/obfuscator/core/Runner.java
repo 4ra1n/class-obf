@@ -261,6 +261,11 @@ public class Runner {
             logger.info("run junk transformer finish");
         }
 
+        if (config.isEnableBadAnno()) {
+            BadAnnoTransformer.transform(loader);
+            logger.info("run bad anno transformer finish");
+        }
+
         if (config.isEnableDeleteCompileInfo()) {
             DeleteInfoTransformer.transform(loader);
             logger.info("run delete info transformer finish");

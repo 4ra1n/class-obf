@@ -58,7 +58,7 @@ enableJunk: true
 junkLevel: 3
 # 花指令可以使用常见的随机字符
 # 也可以使用恶意的字符生成更具有迷惑的代码
-enableEvilString: true
+enableEvilString: false
 # 一个类中花指令最多数量
 maxJunkOneClass: 1000
 
@@ -84,4 +84,10 @@ expandMethodList:
 # 使用恶意的字符替换方法名 字段名 参数名等
 # 注意：如果开启了该项 obfuscateChars 将无效
 # 注意：该功能不确定在所有版本 JAVA 上可以稳定运行
-useEvilCharInstead: true
+useEvilCharInstead: false
+
+# 是否使用恶意的注解进行混淆
+# 特点：可能导致 CLASS 文件无法被 IDEA 反编译
+enableBadAnno: true
+# 恶意注解显示的文本 从本地文件读取
+badAnnoTextFile: bad-anno.txt

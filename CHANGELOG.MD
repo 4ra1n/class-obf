@@ -4,6 +4,8 @@
 
 更新日志：
 
+- [功能] 支持 `enableBadAnno` 错误注解混淆方式 @4ra1n
+- [功能] 支持使用 `badAnnoTextFile` 指定错误注解文本内容 @4ra1n
 - [功能] 方法字段参数名支持 `useEvilCharInstead` 特殊字符 @4ra1n
 - [功能] 花指令添加字符串支持 `enableEvilString` 特殊字符 @4ra1n
 - [BUG] 加密解密字符串编码问题导致中文乱码 @4ra1n

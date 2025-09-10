@@ -44,6 +44,9 @@ public class BaseConfig {
 
     private boolean useEvilCharInstead;
 
+    private boolean enableBadAnno;
+    private String badAnnoTextFile;
+
     /**
      * 如果配置没问题可以启动就返回 true
      *
@@ -174,6 +177,10 @@ public class BaseConfig {
                 ColorUtil.green(Arrays.toString(expandMethodList)));
         System.out.println(ColorUtil.yellow("Use Evil Char Instead -> ") +
                 ColorUtil.green(String.valueOf(useEvilCharInstead)));
+        System.out.println(ColorUtil.yellow("Enable Bad Annotation -> ") +
+                ColorUtil.green(String.valueOf(enableBadAnno)));
+        System.out.println(ColorUtil.cyan("[Bad Annotation] Bad Annotation Text File -> ") +
+                ColorUtil.green(String.valueOf(badAnnoTextFile)));
     }
 
     public boolean isQuiet() {
@@ -391,5 +398,21 @@ public class BaseConfig {
 
     public void setUseEvilCharInstead(boolean useEvilCharInstead) {
         this.useEvilCharInstead = useEvilCharInstead;
+    }
+
+    public boolean isEnableBadAnno() {
+        return enableBadAnno;
+    }
+
+    public void setEnableBadAnno(boolean enableBadAnno) {
+        this.enableBadAnno = enableBadAnno;
+    }
+
+    public String getBadAnnoTextFile() {
+        return badAnnoTextFile;
+    }
+
+    public void setBadAnnoTextFile(String badAnnoTextFile) {
+        this.badAnnoTextFile = badAnnoTextFile;
     }
 }
