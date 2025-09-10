@@ -23,7 +23,7 @@
 
 本项目另外被多个 **非开源安全工具** 集成和使用，逐步完善中
 
-## 背景
+## 介绍
 
 工具介绍
 
@@ -48,50 +48,9 @@
 
 ## 快速开始
 
-生成配置文件：`java -jar class-obf.jar --generate`
-
-使用指定配置文件混淆当前目录的 `Test.class`
-
-```shell
-java -jar class-obf.jar --config config.yaml --input Test.class
-```
-
-一个普通的类
-
-```java
-public class Test {
-    private String a = "cal";
-    private String b = "c.exe";
-    private int c = 1;
-
-    public static void eval() throws Exception {
-        Test test = new Test();
-        Runtime rt = Runtime.getRuntime();
-        rt.exec(test.a + test.b);
-        System.out.println(test.c);
-    }
-
-    public static void main(String[] args) throws Exception {
-        eval();
-    }
-}
-```
-
-使用 `--std-output` 参数将会导出标准的 `class` 文件以及对应的包名
-
-例如 `me.n1ar4.Test` 将会导出 `class-obf-output/me/n1ar4/Test.class` 文件
-
-## 问题
-
-从 `1.5.0` 版本解决了缺少依赖的问题，如果你混淆时遇到报错找不到某些依赖类：
-
-请将依赖的 `jar` 文件都放在当前目录下的 `class-obf-lib` 目录（会自动生成）
-
-## API
-
 你可以使用代码方式调用（参考 `test` 目录的 `TestQuick/TestAPI` 文件）
 
-该项目在 `1.6.0` 版本上传了 `Maven` 中央仓库
+本项目已上传了 `Maven` 中央仓库，可以直接引入和使用
 
 ```xml
 <dependency>
@@ -112,7 +71,7 @@ System.out.println(data);
 
 ```java
 BaseConfig config = new BaseConfig();
-// 省略代码 自行设置 config 文件
+// 省略代码 自行配置 config
 
 ClassObf classObf = new ClassObf(config);
 // 支持三种重载：输入文件字符串，输入文件 PATH 对象，输入 byte[] 数据
@@ -123,13 +82,25 @@ if(result.getMessage().equals(Result.SUCCESS)){
 }
 ```
 
-如果你不想输出一大堆调试信息，可以这样设置
+**注意：由于设计原因，混淆 `API` 不支持并发**
 
-```java
-config.setQuiet(true);
+## 命令行使用
+
+生成配置文件：`java -jar class-obf.jar --generate`
+
+使用指定配置文件混淆当前目录的 `Test.class`
+
+```shell
+java -jar class-obf.jar --config config.yaml --input Test.class
 ```
 
-**注意：由于设计原因，混淆 `API` 不支持并发**
+## 常见问题
+
+从 `1.5.0` 版本解决了缺少依赖的问题，如果你混淆时遇到报错找不到某些依赖类：
+
+请将依赖的 `jar` 文件都放在当前目录下的 `class-obf-lib` 目录（会自动生成）
+
+从 `1.7.1` 版本解决了中文字符串解密乱码的问题
 
 ## 配置文件
 
@@ -217,7 +188,7 @@ expandMethodList:
   - "test"
 ```
 
-## test
+## 如何测试
 
 如何测试你混淆后的单个 `class` 可用？
 
