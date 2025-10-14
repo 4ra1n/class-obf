@@ -13,6 +13,10 @@ public class Test {
         System.out.println("Counter: " + counter);
     }
 
+    public static void test(){
+        System.out.println("static");
+    }
+
     public void testConditionalBranches() {
         if (flag) {
             System.out.println("Flag is true");
@@ -119,6 +123,7 @@ public class Test {
     }
 
     public static void main(String[] args) {
+        test();
         System.out.println("=== 开始测试控制流混淆和花指令 ===");
 
         Test test = new Test();

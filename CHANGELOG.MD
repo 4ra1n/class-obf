@@ -1,10 +1,11 @@
 # CHANGELOG
 
-## 1.8.1
+## 1.9.0
 
 更新日志：
 
-- [功能] 新增配置 `antiAI` 允许简单的对抗 `AI` 分析
+- [功能] 支持 `enableInvokeDynamic` 配置使 `IDEA` 报错
+- [功能] 支持 `antiAI` 允许简单的对抗 `AI` 分析
 
 感谢以下用户的贡献:
 
@@ -16,7 +17,7 @@
 <dependency>
     <groupId>io.github.4ra1n</groupId>
     <artifactId>class-obf</artifactId>
-    <version>1.8.1</version>
+    <version>1.9.0</version>
 </dependency>
 ```
 

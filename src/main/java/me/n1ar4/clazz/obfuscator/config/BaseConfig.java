@@ -49,6 +49,8 @@ public class BaseConfig {
 
     private boolean antiAI;
 
+    private boolean enableInvokeDynamic;
+
     /**
      * 如果配置没问题可以启动就返回 true
      *
@@ -124,6 +126,8 @@ public class BaseConfig {
         config.setEnableEvilString(false);
         // 默认关闭 anti AI
         config.setAntiAI(false);
+        // 默认关闭 invoke dynamic
+        config.setEnableInvokeDynamic(false);
         return config;
     }
 
@@ -428,5 +432,13 @@ public class BaseConfig {
 
     public void setAntiAI(boolean antiAI) {
         this.antiAI = antiAI;
+    }
+
+    public boolean isEnableInvokeDynamic() {
+        return enableInvokeDynamic;
+    }
+
+    public void setEnableInvokeDynamic(boolean enableInvokeDynamic) {
+        this.enableInvokeDynamic = enableInvokeDynamic;
     }
 }

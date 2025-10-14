@@ -23,6 +23,12 @@
 
 ![](img/011.png)
 
+从 `1.9.0` 版本后新增简单的 `AI` 对抗和 `IDEA` 报错对抗
+
+![](img/012.png)
+
+![](img/013.png)
+
 本项目已深度集成到 `web-chains` 项目中 (https://github.com/vulhub/java-chains)
 
 ![](img/006.png)
@@ -46,7 +52,7 @@
 
 `class-obf` 相比商业化混淆器：
 
-- 混淆强度不如商业化混淆器：弱于 `zkm` 混淆，接近 `allatori` 混淆
+- 混淆强度接近商业化混淆器：稍弱于 `zkm` 混淆，接近 `allatori` 混淆
 - 保持更新，学习先进商业混淆器的思路，逐步完善
 - 完全开源，有功能问题可以提 `PR` 贡献
 - 配置简单，配置的参数 **远少于** 商业化混淆器，上手非常容易
@@ -211,6 +217,11 @@ badAnnoTextFile: bad-anno.txt
 # 插入对抗 PROMPT 使得 AI 分析混淆代码可能失效
 # 测试功能 实际发现很多大模型无法被打断
 antiAI: false
+
+# 是否启用 InvokeDynamic 混淆
+# 将普通的 invoke 指令转换为 invokedynamic 指令
+# 注意：只支持 STATIC 方法 且未经过完善的测试 可能不够稳定
+enableInvokeDynamic: false
 ```
 
 ## 如何测试

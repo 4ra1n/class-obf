@@ -96,3 +96,8 @@ badAnnoTextFile: bad-anno.txt
 # 插入对抗 PROMPT 使得 AI 分析混淆代码可能失效
 # 测试功能 实际发现很多大模型无法被打断
 antiAI: false
+
+# 是否启用 InvokeDynamic 混淆
+# 将普通的 invoke 指令转换为 invokedynamic 指令
+# 注意：只支持 STATIC 方法 且未经过完善的测试 可能不够稳定
+enableInvokeDynamic: false

@@ -271,6 +271,11 @@ public class Runner {
             logger.info("run anti ai transformer finish");
         }
 
+        if (config.isEnableInvokeDynamic()) {
+            InvokeDynamicTransformer.transform(loader);
+            logger.info("run invoke dynamic transformer finish");
+        }
+
         if (config.isEnableDeleteCompileInfo()) {
             DeleteInfoTransformer.transform(loader);
             logger.info("run delete info transformer finish");
