@@ -2,6 +2,8 @@
 
 ## 1.9.0
 
+注意：配置文件有变动
+
 更新日志：
 
 - [功能] 支持 `enableInvokeDynamic` 配置使 `IDEA` 报错
