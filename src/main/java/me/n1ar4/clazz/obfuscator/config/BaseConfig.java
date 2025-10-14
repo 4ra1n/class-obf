@@ -47,6 +47,8 @@ public class BaseConfig {
     private boolean enableBadAnno;
     private String badAnnoTextFile;
 
+    private boolean antiAI;
+
     /**
      * 如果配置没问题可以启动就返回 true
      *
@@ -120,6 +122,8 @@ public class BaseConfig {
         config.setEnableExpandMethod(false);
         config.setUseEvilCharInstead(false);
         config.setEnableEvilString(false);
+        // 默认关闭 anti AI
+        config.setAntiAI(false);
         return config;
     }
 
@@ -181,6 +185,8 @@ public class BaseConfig {
                 ColorUtil.green(String.valueOf(enableBadAnno)));
         System.out.println(ColorUtil.cyan("[Bad Annotation] Bad Annotation Text File -> ") +
                 ColorUtil.green(String.valueOf(badAnnoTextFile)));
+        System.out.println(ColorUtil.yellow("Enable Anti AI -> ") +
+                ColorUtil.green(String.valueOf(antiAI)));
     }
 
     public boolean isQuiet() {
@@ -414,5 +420,13 @@ public class BaseConfig {
 
     public void setBadAnnoTextFile(String badAnnoTextFile) {
         this.badAnnoTextFile = badAnnoTextFile;
+    }
+
+    public boolean isAntiAI() {
+        return antiAI;
+    }
+
+    public void setAntiAI(boolean antiAI) {
+        this.antiAI = antiAI;
     }
 }

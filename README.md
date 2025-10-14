@@ -206,6 +206,11 @@ useEvilCharInstead: false
 enableBadAnno: true
 # 恶意注解显示的文本 从本地文件读取
 badAnnoTextFile: bad-anno.txt
+
+# 可能的 AI 反编译对抗
+# 插入对抗 PROMPT 使得 AI 分析混淆代码可能失效
+# 测试功能 实际发现很多大模型无法被打断
+antiAI: false
 ```
 
 ## 如何测试

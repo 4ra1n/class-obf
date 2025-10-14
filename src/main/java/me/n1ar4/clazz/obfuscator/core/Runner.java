@@ -266,6 +266,11 @@ public class Runner {
             logger.info("run bad anno transformer finish");
         }
 
+        if (config.isAntiAI()) {
+            AntiPromptTransformer.transform(loader);
+            logger.info("run anti ai transformer finish");
+        }
+
         if (config.isEnableDeleteCompileInfo()) {
             DeleteInfoTransformer.transform(loader);
             logger.info("run delete info transformer finish");
