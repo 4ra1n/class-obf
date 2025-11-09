@@ -13,7 +13,7 @@ public class Test {
         System.out.println("Counter: " + counter);
     }
 
-    public static void test(){
+    public static void test() {
         System.out.println("static");
     }
 

@@ -1,9 +1,10 @@
 package me.n1ar4.clazz.obfuscator.asm;
 
-import org.objectweb.asm.*;
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.Handle;
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 public class InvokeDynamicClassVisitor extends ClassVisitor {
@@ -13,19 +14,23 @@ public class InvokeDynamicClassVisitor extends ClassVisitor {
     private final Random random = new Random();
     private String className;
     private boolean hasBootstrapMethod = false;
+
     public InvokeDynamicClassVisitor(ClassVisitor classVisitor) {
         super(Opcodes.ASM9, classVisitor);
     }
+
     @Override
     public void visit(int version, int access, String name, String signature, String superName, String[] interfaces) {
         this.className = name;
         super.visit(version, access, name, signature, superName, interfaces);
     }
+
     @Override
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
         MethodVisitor mv = super.visitMethod(access, name, descriptor, signature, exceptions);
         return new InvokeDynamicMethodAdapter(mv);
     }
+
     @Override
     public void visitEnd() {
         if (hasBootstrapMethod) {
@@ -46,24 +51,24 @@ public class InvokeDynamicClassVisitor extends ClassVisitor {
         mv.visitTypeInsn(Opcodes.NEW, "java/lang/invoke/ConstantCallSite");
         mv.visitInsn(Opcodes.DUP);
         mv.visitVarInsn(Opcodes.ALOAD, 3);
-        mv.visitMethodInsn(Opcodes.INVOKESTATIC, 
-                "java/lang/Class", 
-                "forName", 
-                "(Ljava/lang/String;)Ljava/lang/Class;", 
+        mv.visitMethodInsn(Opcodes.INVOKESTATIC,
+                "java/lang/Class",
+                "forName",
+                "(Ljava/lang/String;)Ljava/lang/Class;",
                 false);
         mv.visitVarInsn(Opcodes.ALOAD, 0);
         mv.visitInsn(Opcodes.SWAP);
         mv.visitVarInsn(Opcodes.ALOAD, 4);
         mv.visitVarInsn(Opcodes.ALOAD, 2);
-        mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL, 
-                "java/lang/invoke/MethodHandles$Lookup", 
-                "findStatic", 
-                "(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/MethodHandle;", 
+        mv.visitMethodInsn(Opcodes.INVOKEVIRTUAL,
+                "java/lang/invoke/MethodHandles$Lookup",
+                "findStatic",
+                "(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/MethodHandle;",
                 false);
-        mv.visitMethodInsn(Opcodes.INVOKESPECIAL, 
-                "java/lang/invoke/ConstantCallSite", 
-                "<init>", 
-                "(Ljava/lang/invoke/MethodHandle;)V", 
+        mv.visitMethodInsn(Opcodes.INVOKESPECIAL,
+                "java/lang/invoke/ConstantCallSite",
+                "<init>",
+                "(Ljava/lang/invoke/MethodHandle;)V",
                 false);
         mv.visitInsn(Opcodes.ARETURN);
         mv.visitMaxs(6, 5);
@@ -100,8 +105,8 @@ public class InvokeDynamicClassVisitor extends ClassVisitor {
         }
 
         private boolean shouldObfuscate(String owner, String name) {
-            if (owner.startsWith("java/") || owner.startsWith("javax/") || 
-                owner.startsWith("sun/") || name.equals("<init>") || name.equals("<clinit>")) {
+            if (owner.startsWith("java/") || owner.startsWith("javax/") ||
+                    owner.startsWith("sun/") || name.equals("<init>") || name.equals("<clinit>")) {
                 return false;
             }
             return !name.equals("main");
