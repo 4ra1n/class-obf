@@ -68,7 +68,7 @@
 <dependency>
     <groupId>io.github.4ra1n</groupId>
     <artifactId>class-obf</artifactId>
-    <version>1.9.0</version>
+    <version>1.9.1</version>
 </dependency>
 ```
 
