@@ -5,6 +5,7 @@ import me.n1ar4.clazz.obfuscator.config.Manager;
 import me.n1ar4.clazz.obfuscator.core.AnalyzeEnv;
 import me.n1ar4.clazz.obfuscator.core.ObfEnv;
 import me.n1ar4.clazz.obfuscator.core.Runner;
+import me.n1ar4.clazz.obfuscator.utils.ColorUtil;
 import me.n1ar4.clazz.obfuscator.utils.FileUtil;
 import me.n1ar4.log.LogLevel;
 import me.n1ar4.log.LogManager;
@@ -60,6 +61,18 @@ public class ClassObf {
 
     // 重载 - 支持输入 PATH
     public Result run(Path path) {
+        // 是否要进行混淆
+        // 如果 LOG LEVEL 和 OBF CHAR 都是空 显然没有成功拿到配置文件
+        if (config.getObfuscateChars().length == 0 && config.getLogLevel() == null) {
+            try {
+                System.out.println(ColorUtil.red("[-] NO AVAILABLE CONFIG / 没有配置"));
+                System.out.println(ColorUtil.red("[-] 不进行混淆 原样输出"));
+                return Result.Success(Files.readAllBytes(path));
+            } catch (Exception ex) {
+                logger.error(ex.getMessage());
+                return Result.Error(ex.getMessage());
+            }
+        }
         try {
             clean();
             Manager.initConfig(this.config);

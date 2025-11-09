@@ -67,7 +67,7 @@ public class Runner {
                     "\n" +
                     "请将依赖放在 `class-obf-lib` 目录中").getBytes(StandardCharsets.UTF_8));
         } catch (Exception ignored) {
-            logger.warn("无法创建 {} 目录", CustomClassLoader.LIB_DIR);
+            logger.warn("无法创建 {} 目录 可能是目录已存在", CustomClassLoader.LIB_DIR);
         }
 
         addClass(path);

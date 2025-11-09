@@ -51,6 +51,10 @@ public class BaseConfig {
 
     private boolean enableInvokeDynamic;
 
+    public BaseConfig() {
+        // NEW 行为控制
+    }
+
     /**
      * 如果配置没问题可以启动就返回 true
      *
