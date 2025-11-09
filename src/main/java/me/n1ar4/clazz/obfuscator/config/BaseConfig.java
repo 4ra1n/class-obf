@@ -30,6 +30,7 @@ public class BaseConfig {
     private int maxJunkOneClass;
 
     private boolean ignorePublic;
+    private boolean autoDisableImpl;
 
     private String aesKey;
     private String aesDecName;
@@ -444,5 +445,13 @@ public class BaseConfig {
 
     public void setEnableInvokeDynamic(boolean enableInvokeDynamic) {
         this.enableInvokeDynamic = enableInvokeDynamic;
+    }
+
+    public boolean isAutoDisableImpl() {
+        return autoDisableImpl;
+    }
+
+    public void setAutoDisableImpl(boolean autoDisableImpl) {
+        this.autoDisableImpl = autoDisableImpl;
     }
 }

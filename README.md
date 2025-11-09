@@ -114,6 +114,12 @@ java -jar class-obf.jar --config config.yaml --input Test.class
 
 从 `1.7.1` 版本解决了中文字符串解密乱码的问题
 
+如何处理继承/接口实现方法黑名单问题？第三方库无法支持，但是 `rt.jar` 可以支持
+
+从 `1.9.1` 版本支持开启 `autoDisableImpl` 自动分析来自 `JDK` 的情况
+
+![](img/014.png)
+
 ## 配置文件
 
 可以根据你的需求修改配置文件
@@ -143,6 +149,9 @@ enableDeleteCompileInfo: true
 # 是否开启方法名混淆
 # 这里会自动修改方法之间的引用
 enableMethodName: true
+# 是否分析自动 Runtime 避免混淆 实现/重写 类
+# 例如不应该混淆继承 HttpServlet 的 init/doGet/destroy 方法
+autoDisableImpl: true
 # 一般 public 方法是被外部调用的
 # 可以设置该选项为 true 来跳过 public 方法混淆
 ignorePublic: false

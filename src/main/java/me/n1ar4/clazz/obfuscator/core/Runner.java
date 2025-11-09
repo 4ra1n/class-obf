@@ -8,6 +8,7 @@ import me.n1ar4.clazz.obfuscator.base.MethodReference;
 import me.n1ar4.clazz.obfuscator.config.BaseCmd;
 import me.n1ar4.clazz.obfuscator.config.BaseConfig;
 import me.n1ar4.clazz.obfuscator.loader.CustomClassLoader;
+import me.n1ar4.clazz.obfuscator.runtime.RuntimeAnalyzer;
 import me.n1ar4.clazz.obfuscator.transform.*;
 import me.n1ar4.clazz.obfuscator.utils.ASMUtil;
 import me.n1ar4.clazz.obfuscator.utils.ColorUtil;
@@ -21,10 +22,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -127,12 +125,19 @@ public class Runner {
         }
         logger.info("build obfuscate method mapping finish");
 
+        // 实现 autoDisableImpl
+        String[] blackArray = ObfEnv.config.getMethodBlackList();
+        ArrayList<String> blackList = new ArrayList<>(Arrays.asList(blackArray));
+        if (ObfEnv.config.isAutoDisableImpl()) {
+            new RuntimeAnalyzer(path, blackList).analyze();
+        }
+
         // 处理 method mapping 中的 black method 问题
         Map<MethodReference.Handle, MethodReference.Handle>
                 methodNameObfMapping = new HashMap<>(ObfEnv.methodNameObfMapping);
         for (Map.Entry<MethodReference.Handle, MethodReference.Handle> en : ObfEnv.methodNameObfMapping.entrySet()) {
             String oldClassName = en.getKey().getName();
-            for (String s : ObfEnv.config.getMethodBlackList()) {
+            for (String s : blackList) {
                 if (s.equals(oldClassName)) {
                     methodNameObfMapping.remove(en.getKey());
                     methodNameObfMapping.put(en.getKey(), en.getKey());

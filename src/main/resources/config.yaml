@@ -22,6 +22,9 @@ enableDeleteCompileInfo: true
 # 是否开启方法名混淆
 # 这里会自动修改方法之间的引用
 enableMethodName: true
+# 是否分析自动 Runtime 避免混淆 实现/重写 类
+# 例如不应该混淆继承 HttpServlet 的 init/doGet/destroy 方法
+autoDisableImpl: true
 # 一般 public 方法是被外部调用的
 # 可以设置该选项为 true 来跳过 public 方法混淆
 ignorePublic: false
