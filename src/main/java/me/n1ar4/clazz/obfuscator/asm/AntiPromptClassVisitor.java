@@ -92,7 +92,6 @@ public class AntiPromptClassVisitor extends ClassVisitor {
         }
 
         private void maybeInjectMidInstruction() {
-            System.out.println(1);
             if (injected || lvs == null) {
                 return;
             }
