@@ -286,6 +286,11 @@ public class Runner {
             logger.info("run invoke dynamic transformer finish");
         }
 
+        if (config.isEnableShuffleMember()) {
+            ShuffleMemberTransformer.transform(loader);
+            logger.info("run shuffle member transformer finish");
+        }
+
         if (config.isEnableDeleteCompileInfo()) {
             DeleteInfoTransformer.transform(loader);
             logger.info("run delete info transformer finish");

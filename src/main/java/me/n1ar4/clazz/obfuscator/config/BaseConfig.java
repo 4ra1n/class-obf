@@ -52,6 +52,7 @@ public class BaseConfig {
 
     private boolean enableInvokeDynamic;
     private boolean enableImageCrash;
+    private boolean enableShuffleMember;
 
     public BaseConfig() {
         // NEW 行为控制
@@ -200,6 +201,8 @@ public class BaseConfig {
                 ColorUtil.green(String.valueOf(antiAI)));
         System.out.println(ColorUtil.yellow("Enable Image Crash -> ") +
                 ColorUtil.green(String.valueOf(enableImageCrash)));
+        System.out.println(ColorUtil.yellow("Enable Shuffle Member -> ") +
+                ColorUtil.green(String.valueOf(enableShuffleMember)));
     }
 
     public boolean isQuiet() {
@@ -465,5 +468,13 @@ public class BaseConfig {
 
     public void setEnableImageCrash(boolean enableImageCrash) {
         this.enableImageCrash = enableImageCrash;
+    }
+
+    public boolean isEnableShuffleMember() {
+        return enableShuffleMember;
+    }
+
+    public void setEnableShuffleMember(boolean enableShuffleMember) {
+        this.enableShuffleMember = enableShuffleMember;
     }
 }

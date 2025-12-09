@@ -109,3 +109,7 @@ enableInvokeDynamic: false
 # Java Swing 默认可以注入 HTML 标签
 # 使用错误的 img 标签可能导致部分 Swing 反编译器无法工作
 enableImageCrash: false
+
+# 类的方法和字段是有顺序的
+# 开启改配置可以打乱顺序
+enableShuffleMember: true
