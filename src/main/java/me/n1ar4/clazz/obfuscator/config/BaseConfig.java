@@ -51,6 +51,7 @@ public class BaseConfig {
     private boolean antiAI;
 
     private boolean enableInvokeDynamic;
+    private boolean enableImageCrash;
 
     public BaseConfig() {
         // NEW 行为控制
@@ -133,6 +134,7 @@ public class BaseConfig {
         config.setAntiAI(false);
         // 默认关闭 invoke dynamic
         config.setEnableInvokeDynamic(false);
+        config.setEnableImageCrash(false);
         return config;
     }
 
@@ -196,6 +198,8 @@ public class BaseConfig {
                 ColorUtil.green(String.valueOf(badAnnoTextFile)));
         System.out.println(ColorUtil.yellow("Enable Anti AI -> ") +
                 ColorUtil.green(String.valueOf(antiAI)));
+        System.out.println(ColorUtil.yellow("Enable Image Crash -> ") +
+                ColorUtil.green(String.valueOf(enableImageCrash)));
     }
 
     public boolean isQuiet() {
@@ -453,5 +457,13 @@ public class BaseConfig {
 
     public void setAutoDisableImpl(boolean autoDisableImpl) {
         this.autoDisableImpl = autoDisableImpl;
+    }
+
+    public boolean isEnableImageCrash() {
+        return enableImageCrash;
+    }
+
+    public void setEnableImageCrash(boolean enableImageCrash) {
+        this.enableImageCrash = enableImageCrash;
     }
 }

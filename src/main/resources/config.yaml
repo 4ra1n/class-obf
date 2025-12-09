@@ -104,3 +104,8 @@ antiAI: false
 # 将普通的 invoke 指令转换为 invokedynamic 指令
 # 注意：只支持 STATIC 方法 且未经过完善的测试 可能不够稳定
 enableInvokeDynamic: false
+
+# 是否开启 Java Swing 编写的反编译器对抗
+# Java Swing 默认可以注入 HTML 标签
+# 使用错误的 img 标签可能导致部分 Swing 反编译器无法工作
+enableImageCrash: false

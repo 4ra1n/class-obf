@@ -2,6 +2,7 @@
 
 ## 1.9.2
 
+- [功能] 支持 `enableImageCrash` 对抗 `Java Swing` 反编译器
 - [BUG] 修复 `badAnnoTextFile` 空配置导致的异常
 - [BUG] 删除无意义的调试打印
 - [其他] 每次提交自动进行添加完善的测试
