@@ -50,16 +50,16 @@ public class TrimTransformerTest {
                     if (insn instanceof MethodInsnNode) {
                         MethodInsnNode methodInsn = (MethodInsnNode) insn;
                         if ("java/lang/Math".equals(methodInsn.owner) &&
-                            ("abs".equals(methodInsn.name) || 
-                             "max".equals(methodInsn.name) || 
-                             "min".equals(methodInsn.name))) {
+                                ("abs".equals(methodInsn.name) ||
+                                        "max".equals(methodInsn.name) ||
+                                        "min".equals(methodInsn.name))) {
                             // Check descriptors that we support: I, F, D
-                             String desc = methodInsn.desc;
-                             char type = desc.charAt(desc.length() - 1);
-                             if (type == 'I' || type == 'F' || type == 'D') {
-                                 foundMathCalls = true;
-                                 break;
-                             }
+                            String desc = methodInsn.desc;
+                            char type = desc.charAt(desc.length() - 1);
+                            if (type == 'I' || type == 'F' || type == 'D') {
+                                foundMathCalls = true;
+                                break;
+                            }
                         }
                     }
                 }

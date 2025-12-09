@@ -33,7 +33,7 @@ public class BadAnnoLevelTest {
         // No, BaseConfig.Default() sets it? Let's check.
         // BaseConfig.Default() does NOT set badAnnoTextFile.
         // But BadAnnoClassVisitor handles null/empty by using DEFAULT string.
-        
+
         byte[] obf = ObfJUnitUtil.obfuscateBytes(ComboSample.class, cfg);
 
         ClassReader cr = new ClassReader(obf);
@@ -44,7 +44,7 @@ public class BadAnnoLevelTest {
         int classAnnoCount = countAnnotations(cn.invisibleAnnotations);
         System.out.println("Level " + level + " Class Annos: " + classAnnoCount);
         if (classAnnoCount > 0) {
-             System.out.println("  Class Anno Desc: " + ((org.objectweb.asm.tree.AnnotationNode)cn.invisibleAnnotations.get(0)).desc);
+            System.out.println("  Class Anno Desc: " + ((org.objectweb.asm.tree.AnnotationNode) cn.invisibleAnnotations.get(0)).desc);
         }
 
         if (expectClass) {
@@ -60,7 +60,7 @@ public class BadAnnoLevelTest {
             if (count > 0) {
                 foundFieldAnno = true;
                 System.out.println("Level " + level + " Field " + fn.name + " Annos: " + count);
-                 System.out.println("  Field Anno Desc: " + ((org.objectweb.asm.tree.AnnotationNode)fn.invisibleAnnotations.get(0)).desc);
+                System.out.println("  Field Anno Desc: " + ((org.objectweb.asm.tree.AnnotationNode) fn.invisibleAnnotations.get(0)).desc);
                 break;
             }
         }
@@ -77,7 +77,7 @@ public class BadAnnoLevelTest {
             System.out.println("Level " + level + " Method " + mn.name + " Annos: " + count);
             if (count > 0) {
                 foundMethodAnno = true;
-                System.out.println("  Method Anno Desc: " + ((org.objectweb.asm.tree.AnnotationNode)mn.invisibleAnnotations.get(0)).desc);
+                System.out.println("  Method Anno Desc: " + ((org.objectweb.asm.tree.AnnotationNode) mn.invisibleAnnotations.get(0)).desc);
                 // Don't break immediately to see all methods
             }
         }

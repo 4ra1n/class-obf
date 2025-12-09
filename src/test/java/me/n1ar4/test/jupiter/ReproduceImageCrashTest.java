@@ -1,11 +1,11 @@
 package me.n1ar4.test.jupiter;
 
 import me.n1ar4.clazz.obfuscator.asm.ImageCrashClassVisitor;
+import org.junit.jupiter.api.Test;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
 import org.objectweb.asm.Opcodes;
-import org.junit.jupiter.api.Test;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;

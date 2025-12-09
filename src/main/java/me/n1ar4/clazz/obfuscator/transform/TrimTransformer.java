@@ -80,7 +80,7 @@ public class TrimTransformer {
     private static void mutate(InsnList insns, MethodInsnNode insn, String desc, int cmp, int cmp2) {
         ++counter;
         char type = desc.charAt(desc.length() - 1);
-        
+
         if (type == 'I') {
             LabelNode label = new LabelNode();
             InsnList toAdd = new InsnList();

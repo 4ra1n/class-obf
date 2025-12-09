@@ -2,12 +2,7 @@ package me.n1ar4.test.jupiter;
 
 import me.n1ar4.clazz.obfuscator.config.BaseConfig;
 import me.n1ar4.clazz.obfuscator.config.Parser;
-import me.n1ar4.test.samples.ComboSample;
-import me.n1ar4.test.samples.ExpandMethodSample;
-import me.n1ar4.test.samples.InvokeDynamicSample;
-import me.n1ar4.test.samples.NameObfSample;
-import me.n1ar4.test.samples.NumberOpsSample;
-import me.n1ar4.test.samples.StringOpsSample;
+import me.n1ar4.test.samples.*;
 import me.n1ar4.test.util.ObfClassLoader;
 import me.n1ar4.test.util.ObfJUnitUtil;
 import org.junit.jupiter.api.Assertions;
