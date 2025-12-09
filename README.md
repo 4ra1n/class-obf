@@ -29,6 +29,8 @@
 
 ![](img/013.png)
 
+从 `1.10.0` 版本后新增各种先进的混淆手法
+
 本项目已深度集成到 `web-chains` 项目中 (https://github.com/vulhub/java-chains)
 
 ![](img/006.png)
@@ -43,6 +45,33 @@
 - 命令行输出改善，详细展示混淆细节
 - 你可以只混淆你项目的核心类替换即可（方便快速）
 - 提供了多种方式的 `API` 调用
+
+### 混淆功能列表
+
+| 功能名称          | 配置项 (Key)                 | 默认值     | 描述                        |
+|:--------------|:--------------------------|:--------|:--------------------------|
+| 删除编译信息        | `enableDeleteCompileInfo` | `true`  | 删除调试信息无法被调试               |
+| 字段名混淆         | `enableFieldName`         | `true`  | 将类中的字段名修改为无意义字符           |
+| 方法名混淆         | `enableMethodName`        | `true`  | 将类中的方法名修改为无意义字符           |
+| 参数名混淆         | `enableParamName`         | `true`  | 删除或混淆方法参数名称信息             |
+| 隐藏方法          | `enableHideMethod`        | `false` | 尝试隐藏方法不被反编译工具发现           |
+| 隐藏字段          | `enableHideField`         | `false` | 尝试隐藏字段不被反编译工具发现           |
+| XOR 混淆        | `enableXOR`               | `true`  | 简单的异或运算混淆                 |
+| AES 字符串加密     | `enableAES`               | `true`  | 使用 AES 算法加密字符串常量          |
+| 高级字符串混淆       | `enableAdvanceString`     | `true`  | 更复杂的字符串处理混淆               |
+| 花指令混淆         | `enableJunk`              | `true`  | 插入无效的指令迷惑分析者              |
+| 坏注解混淆         | `enableBadAnno`           | `false` | 插入错误的注解对抗反编译器             |
+| AI 对抗         | `antiAI`                  | `false` | 针对 AI 分析工具的对抗混淆           |
+| InvokeDynamic | `enableInvokeDynamic`     | `false` | 使用动态调用指令对抗反编译器            |
+| 图片崩溃          | `enableImageCrash`        | `false` | 对抗 `Java Swing` 反编译工具     |
+| 成员乱序          | `enableShuffleMember`     | `false` | 打乱类成员方法和字段的顺序             |
+| 控制流混淆         | `enableControlFlow`       | `false` | 简单的方法代码控制流混淆              |
+| 代码裁剪          | `enableTrim`              | `false` | 对数学方法进行特殊混淆手段             |
+| 方法膨胀          | `enableExpandMethod`      | `false` | 通过增加无用参数迷惑分析者             |
+| 恶意字符串         | `enableEvilString`        | `false` | 使用特殊字符对抗反编译和迷惑分析者         |
+| 恶意字符替换        | `useEvilCharInstead`      | `false` | 使用恶意字符替换原有字符              |
+| 更多配置...       | ......                    | ...     | 请参考自动生成的 `config.yaml` 文件 |
+
 
 如果你有 `Jar` 混淆的需求：
 
@@ -219,6 +248,11 @@ useEvilCharInstead: false
 # 是否使用恶意的注解进行混淆
 # 特点：可能导致 CLASS 文件无法被 IDEA 反编译
 enableBadAnno: true
+# 恶意注解混淆级别
+# 1: 只给类添加
+# 2: 给类和字段添加
+# 3: 给类、字段、方法都添加
+badAnnoLevel: 3
 # 恶意注解显示的文本 从本地文件读取
 badAnnoTextFile: bad-anno.txt
 
@@ -231,6 +265,21 @@ antiAI: false
 # 将普通的 invoke 指令转换为 invokedynamic 指令
 # 注意：只支持 STATIC 方法 且未经过完善的测试 可能不够稳定
 enableInvokeDynamic: false
+
+# 是否开启 Java Swing 编写的反编译器对抗
+# Java Swing 默认可以注入 HTML 标签
+# 使用错误的 img 标签可能导致部分 Swing 反编译器无法工作
+enableImageCrash: false
+
+# 类的方法和字段是有顺序的
+# 开启该配置可以打乱顺序
+enableShuffleMember: true
+
+# 简单的控制流混淆
+enableControlFlow: false
+
+# 对数学方法进行特殊混淆手段
+enableTrim: false
 ```
 
 ## 如何测试
