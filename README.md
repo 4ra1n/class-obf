@@ -48,29 +48,29 @@
 
 ### 混淆功能列表
 
-| 功能名称          | 配置项 (Key)                 | 默认值     | 描述                        |
-|:--------------|:--------------------------|:--------|:--------------------------|
-| 删除编译信息        | `enableDeleteCompileInfo` | `true`  | 删除调试信息无法被调试               |
-| 字段名混淆         | `enableFieldName`         | `true`  | 将类中的字段名修改为无意义字符           |
-| 方法名混淆         | `enableMethodName`        | `true`  | 将类中的方法名修改为无意义字符           |
-| 参数名混淆         | `enableParamName`         | `true`  | 删除或混淆方法参数名称信息             |
-| 隐藏方法          | `enableHideMethod`        | `false` | 尝试隐藏方法不被反编译工具发现           |
-| 隐藏字段          | `enableHideField`         | `false` | 尝试隐藏字段不被反编译工具发现           |
-| XOR 混淆        | `enableXOR`               | `true`  | 简单的异或运算混淆                 |
-| AES 字符串加密     | `enableAES`               | `true`  | 使用 AES 算法加密字符串常量          |
-| 高级字符串混淆       | `enableAdvanceString`     | `true`  | 更复杂的字符串处理混淆               |
-| 花指令混淆         | `enableJunk`              | `true`  | 插入无效的指令迷惑分析者              |
-| 坏注解混淆         | `enableBadAnno`           | `false` | 插入错误的注解对抗反编译器             |
-| AI 对抗         | `antiAI`                  | `false` | 针对 AI 分析工具的对抗混淆           |
-| InvokeDynamic | `enableInvokeDynamic`     | `false` | 使用动态调用指令对抗反编译器            |
-| 图片崩溃          | `enableImageCrash`        | `false` | 对抗 `Java Swing` 反编译工具     |
-| 成员乱序          | `enableShuffleMember`     | `false` | 打乱类成员方法和字段的顺序             |
-| 控制流混淆         | `enableControlFlow`       | `false` | 简单的方法代码控制流混淆              |
-| 代码裁剪          | `enableTrim`              | `false` | 对数学方法进行特殊混淆手段             |
-| 方法膨胀          | `enableExpandMethod`      | `false` | 通过增加无用参数迷惑分析者             |
-| 恶意字符串         | `enableEvilString`        | `false` | 使用特殊字符对抗反编译和迷惑分析者         |
-| 恶意字符替换        | `useEvilCharInstead`      | `false` | 使用恶意字符替换原有字符              |
-| 更多配置...       | ......                    | ...     | 请参考自动生成的 `config.yaml` 文件 |
+| 功能名称      | 配置项 (Key)                 | 默认值     | 描述                        |
+|:----------|:--------------------------|:--------|:--------------------------|
+| 删除编译信息    | `enableDeleteCompileInfo` | `true`  | 删除调试信息无法被调试               |
+| 字段名混淆     | `enableFieldName`         | `true`  | 将类中的字段名修改为无意义字符           |
+| 方法名混淆     | `enableMethodName`        | `true`  | 将类中的方法名修改为无意义字符           |
+| 参数名混淆     | `enableParamName`         | `true`  | 删除或混淆方法参数名称信息             |
+| 隐藏方法      | `enableHideMethod`        | `false` | 尝试隐藏方法不被反编译工具发现           |
+| 隐藏字段      | `enableHideField`         | `false` | 尝试隐藏字段不被反编译工具发现           |
+| XOR 混淆    | `enableXOR`               | `true`  | 简单的异或运算混淆                 |
+| AES 字符串加密 | `enableAES`               | `true`  | 使用 AES 算法加密字符串常量          |
+| 高级字符串混淆   | `enableAdvanceString`     | `true`  | 更复杂的字符串处理混淆               |
+| 花指令混淆     | `enableJunk`              | `true`  | 插入无效的指令迷惑分析者              |
+| 坏注解混淆     | `enableBadAnno`           | `false` | 插入错误的注解对抗反编译器             |
+| AI 对抗     | `antiAI`                  | `false` | 针对 AI 分析工具的对抗混淆           |
+| 动态调用      | `enableInvokeDynamic`     | `false` | 使用动态调用指令对抗反编译器            |
+| 图片崩溃      | `enableImageCrash`        | `false` | 对抗 `Java Swing` 反编译工具     |
+| 成员乱序      | `enableShuffleMember`     | `false` | 打乱类成员方法和字段的顺序             |
+| 控制流混淆     | `enableControlFlow`       | `false` | 简单的方法代码控制流混淆              |
+| 数学方法混淆    | `enableTrim`              | `false` | 对数学方法进行特殊混淆手段             |
+| 方法膨胀      | `enableExpandMethod`      | `false` | 通过增加无用参数迷惑分析者             |
+| 花指令使用特殊字符 | `enableEvilString`        | `false` | 使用特殊字符对抗反编译和迷惑分析者         |
+| 特殊字符替换    | `useEvilCharInstead`      | `false` | 使用恶意字符替换原有字符              |
+| 更多配置...   | ......                    | ...     | 请参考自动生成的 `config.yaml` 文件 |
 
 
 如果你有 `Jar` 混淆的需求：
