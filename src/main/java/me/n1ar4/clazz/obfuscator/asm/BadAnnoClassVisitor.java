@@ -57,15 +57,23 @@ public class BadAnnoClassVisitor extends ClassVisitor {
 
     private static String generate() {
         String data;
-        Path annoPath = Paths.get(ObfEnv.config.getBadAnnoTextFile());
-        if (Files.notExists(annoPath)) {
+
+        // 2025/12/09 API 不设置 BAD ANNO TEXT 会异常
+        String badAnnoText = ObfEnv.config.getBadAnnoTextFile();
+        if (badAnnoText == null || badAnnoText.trim().isEmpty()) {
             data = DEFAULT;
         } else {
-            try {
-                byte[] b = Files.readAllBytes(annoPath);
-                data = new String(b);
-            } catch (Exception ignored) {
+            // 非空情况下再去看是否存在
+            Path annoPath = Paths.get(ObfEnv.config.getBadAnnoTextFile());
+            if (Files.notExists(annoPath)) {
                 data = DEFAULT;
+            } else {
+                try {
+                    byte[] b = Files.readAllBytes(annoPath);
+                    data = new String(b);
+                } catch (Exception ignored) {
+                    data = DEFAULT;
+                }
             }
         }
         return data;
