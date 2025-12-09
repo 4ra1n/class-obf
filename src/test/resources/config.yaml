@@ -113,3 +113,6 @@ enableImageCrash: false
 # 类的方法和字段是有顺序的
 # 开启改配置可以打乱顺序
 enableShuffleMember: true
+
+# 简单的控制流混淆
+enableControlFlow: false

@@ -291,6 +291,11 @@ public class Runner {
             logger.info("run shuffle member transformer finish");
         }
 
+        if (config.isEnableControlFlow()) {
+            ControlFlowTransformer.transform(loader);
+            logger.info("run control flow transformer finish");
+        }
+
         if (config.isEnableDeleteCompileInfo()) {
             DeleteInfoTransformer.transform(loader);
             logger.info("run delete info transformer finish");

@@ -283,3 +283,9 @@ public class Test extends ClassLoader {
 <img src="https://api.star-history.com/svg?repos=4ra1n/class-obf&type=Date" width="600" height="400" alt="Star History Chart" valign="middle">
 
 </div>
+
+## Thanks
+
+Some ideas were referenced from other projects:
+
+- https://github.com/sim0n/Caesium

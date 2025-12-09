@@ -53,6 +53,7 @@ public class BaseConfig {
     private boolean enableInvokeDynamic;
     private boolean enableImageCrash;
     private boolean enableShuffleMember;
+    private boolean enableControlFlow;
 
     public BaseConfig() {
         // NEW 行为控制
@@ -136,6 +137,7 @@ public class BaseConfig {
         // 默认关闭 invoke dynamic
         config.setEnableInvokeDynamic(false);
         config.setEnableImageCrash(false);
+        config.setEnableControlFlow(false);
         return config;
     }
 
@@ -203,6 +205,8 @@ public class BaseConfig {
                 ColorUtil.green(String.valueOf(enableImageCrash)));
         System.out.println(ColorUtil.yellow("Enable Shuffle Member -> ") +
                 ColorUtil.green(String.valueOf(enableShuffleMember)));
+        System.out.println(ColorUtil.yellow("Enable Control Flow -> ") +
+                ColorUtil.green(String.valueOf(enableControlFlow)));
     }
 
     public boolean isQuiet() {
@@ -476,5 +480,13 @@ public class BaseConfig {
 
     public void setEnableShuffleMember(boolean enableShuffleMember) {
         this.enableShuffleMember = enableShuffleMember;
+    }
+
+    public boolean isEnableControlFlow() {
+        return enableControlFlow;
+    }
+
+    public void setEnableControlFlow(boolean enableControlFlow) {
+        this.enableControlFlow = enableControlFlow;
     }
 }
