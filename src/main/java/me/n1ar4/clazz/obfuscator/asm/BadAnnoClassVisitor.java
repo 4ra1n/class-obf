@@ -30,8 +30,10 @@ public class BadAnnoClassVisitor extends ClassVisitor {
     public FieldVisitor visitField(int access, String name, String descriptor, String signature, Object value) {
         FieldVisitor fv = super.visitField(access, name, descriptor, signature, value);
         if (fv != null) {
-            fv.visitAnnotation(getAnnotationDescriptor(), false);
-            counter++;
+            if (ObfEnv.config.getBadAnnoLevel() >= 2) {
+                fv.visitAnnotation(getAnnotationDescriptor(), false);
+                counter++;
+            }
         }
         return fv;
     }
@@ -40,8 +42,16 @@ public class BadAnnoClassVisitor extends ClassVisitor {
     public MethodVisitor visitMethod(int access, String name, String descriptor, String signature, String[] exceptions) {
         MethodVisitor mv = super.visitMethod(access, name, descriptor, signature, exceptions);
         if (mv != null) {
-            mv.visitAnnotation(getAnnotationDescriptor(), false);
-            counter++;
+            if (ObfEnv.config.getBadAnnoLevel() >= 3) {
+                return new MethodVisitor(Const.ASMVersion, mv) {
+                    @Override
+                    public void visitCode() {
+                        super.visitAnnotation(getAnnotationDescriptor(), false);
+                        counter++;
+                        super.visitCode();
+                    }
+                };
+            }
         }
         return mv;
     }

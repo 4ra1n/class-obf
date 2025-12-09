@@ -92,6 +92,11 @@ useEvilCharInstead: false
 # 是否使用恶意的注解进行混淆
 # 特点：可能导致 CLASS 文件无法被 IDEA 反编译
 enableBadAnno: true
+# 恶意注解混淆级别
+# 1: 只给类添加
+# 2: 给类和字段添加
+# 3: 给类、字段、方法都添加
+badAnnoLevel: 3
 # 恶意注解显示的文本 从本地文件读取
 badAnnoTextFile: bad-anno.txt
 

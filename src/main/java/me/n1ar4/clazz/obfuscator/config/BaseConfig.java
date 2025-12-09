@@ -47,6 +47,7 @@ public class BaseConfig {
 
     private boolean enableBadAnno;
     private String badAnnoTextFile;
+    private int badAnnoLevel = 3;
 
     private boolean antiAI;
 
@@ -99,6 +100,10 @@ public class BaseConfig {
             System.out.println(ColorUtil.red("[ERROR] max junk must be between 1 and 10000"));
             return false;
         }
+        if (badAnnoLevel < 1 || badAnnoLevel > 3) {
+            System.out.println(ColorUtil.red("[ERROR] bad anno level must be between 1 and 3"));
+            return false;
+        }
         return true;
     }
 
@@ -125,6 +130,8 @@ public class BaseConfig {
         config.setEnableJunk(true);
         config.setJunkLevel(3);
         config.setMaxJunkOneClass(1000);
+        config.setEnableBadAnno(false);
+        config.setBadAnnoLevel(3);
         // 默认额外配置
         config.setObfuscateChars(new String[]{"i", "l", "L", "1", "I"});
         config.setAdvanceStringName("iii");
@@ -199,6 +206,8 @@ public class BaseConfig {
                 ColorUtil.green(String.valueOf(useEvilCharInstead)));
         System.out.println(ColorUtil.yellow("Enable Bad Annotation -> ") +
                 ColorUtil.green(String.valueOf(enableBadAnno)));
+        System.out.println(ColorUtil.cyan("[Bad Annotation] Bad Annotation Level -> ") +
+                ColorUtil.green(String.valueOf(badAnnoLevel)));
         System.out.println(ColorUtil.cyan("[Bad Annotation] Bad Annotation Text File -> ") +
                 ColorUtil.green(String.valueOf(badAnnoTextFile)));
         System.out.println(ColorUtil.yellow("Enable Anti AI -> ") +
@@ -444,6 +453,14 @@ public class BaseConfig {
 
     public void setBadAnnoTextFile(String badAnnoTextFile) {
         this.badAnnoTextFile = badAnnoTextFile;
+    }
+
+    public int getBadAnnoLevel() {
+        return badAnnoLevel;
+    }
+
+    public void setBadAnnoLevel(int badAnnoLevel) {
+        this.badAnnoLevel = badAnnoLevel;
     }
 
     public boolean isAntiAI() {
