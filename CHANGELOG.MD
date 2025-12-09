@@ -5,6 +5,7 @@
 - [功能] 支持 `enableImageCrash` 对抗 `Java Swing` 反编译器
 - [功能] 支持 `enableShuffleMember` 配置打乱方法和字段原始排序
 - [功能] 支持 `enableControlFlow` 配置简单的控制流混淆
+- [功能] 支持 `enableTrim` 对数学方法进行特殊混淆
 - [BUG] 修复 `badAnnoTextFile` 空配置导致的异常
 - [BUG] 删除无意义的调试打印
 - [其他] 每次提交自动进行添加完善的测试

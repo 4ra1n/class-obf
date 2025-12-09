@@ -111,8 +111,11 @@ enableInvokeDynamic: false
 enableImageCrash: false
 
 # 类的方法和字段是有顺序的
-# 开启改配置可以打乱顺序
+# 开启该配置可以打乱顺序
 enableShuffleMember: true
 
 # 简单的控制流混淆
 enableControlFlow: false
+
+# 对数学方法进行特殊混淆手段
+enableTrim: false

@@ -54,6 +54,7 @@ public class BaseConfig {
     private boolean enableImageCrash;
     private boolean enableShuffleMember;
     private boolean enableControlFlow;
+    private boolean enableTrim;
 
     public BaseConfig() {
         // NEW 行为控制
@@ -138,6 +139,7 @@ public class BaseConfig {
         config.setEnableInvokeDynamic(false);
         config.setEnableImageCrash(false);
         config.setEnableControlFlow(false);
+        config.setEnableTrim(false);
         return config;
     }
 
@@ -207,6 +209,8 @@ public class BaseConfig {
                 ColorUtil.green(String.valueOf(enableShuffleMember)));
         System.out.println(ColorUtil.yellow("Enable Control Flow -> ") +
                 ColorUtil.green(String.valueOf(enableControlFlow)));
+        System.out.println(ColorUtil.yellow("Enable Trim -> ") +
+                ColorUtil.green(String.valueOf(enableTrim)));
     }
 
     public boolean isQuiet() {
@@ -488,5 +492,13 @@ public class BaseConfig {
 
     public void setEnableControlFlow(boolean enableControlFlow) {
         this.enableControlFlow = enableControlFlow;
+    }
+
+    public boolean isEnableTrim() {
+        return enableTrim;
+    }
+
+    public void setEnableTrim(boolean enableTrim) {
+        this.enableTrim = enableTrim;
     }
 }

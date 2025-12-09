@@ -296,6 +296,11 @@ public class Runner {
             logger.info("run control flow transformer finish");
         }
 
+        if (config.isEnableTrim()) {
+            TrimTransformer.transform(loader);
+            logger.info("run trim transformer finish");
+        }
+
         if (config.isEnableDeleteCompileInfo()) {
             DeleteInfoTransformer.transform(loader);
             logger.info("run delete info transformer finish");
