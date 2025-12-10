@@ -35,8 +35,6 @@
 
 从 `1.10.0` 版本后新增各种先进的混淆手法
 
-本项目已深度集成到 `web-chains` 项目中 (https://github.com/vulhub/java-chains)
-
 ![](img/006.png)
 
 ## 介绍
