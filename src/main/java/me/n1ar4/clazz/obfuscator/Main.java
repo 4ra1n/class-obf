@@ -1,11 +1,9 @@
 package me.n1ar4.clazz.obfuscator;
 
 import com.beust.jcommander.JCommander;
-import me.n1ar4.clazz.obfuscator.config.BaseCmd;
-import me.n1ar4.clazz.obfuscator.config.BaseConfig;
-import me.n1ar4.clazz.obfuscator.config.Manager;
-import me.n1ar4.clazz.obfuscator.config.Parser;
+import me.n1ar4.clazz.obfuscator.config.*;
 import me.n1ar4.clazz.obfuscator.core.Runner;
+import me.n1ar4.clazz.obfuscator.core.WorkflowRunner;
 import me.n1ar4.log.LogManager;
 import me.n1ar4.log.Logger;
 
@@ -66,7 +64,20 @@ public class Main {
             return;
         }
 
-        logger.info("start class obfuscate");
-        Runner.run(path, config, false, baseCmd);
+        if (baseCmd.getWorkflow() != null && !baseCmd.getWorkflow().isEmpty()) {
+            WorkflowParser workflowParser = new WorkflowParser();
+            WorkflowConfig workflowConfig = workflowParser.parse(Paths.get(baseCmd.getWorkflow()));
+            if (workflowConfig == null) {
+                logger.error("parse workflow config error");
+                return;
+            }
+            // 允许根据 workflow 进行混淆
+            logger.info("start workflow class obfuscate");
+            WorkflowRunner.run(path,config,workflowConfig,false,baseCmd);
+        }else{
+            // 走普通流程
+            logger.info("start class obfuscate");
+            Runner.run(path, config, false, baseCmd);
+        }
     }
 }

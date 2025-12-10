@@ -14,6 +14,16 @@ public class BaseCmd {
     private boolean version;
     @Parameter(names = {"--std-output"}, description = "standard output (export file to package dir)")
     private boolean stdOutput;
+    @Parameter(names = {"--workflow"}, description = "workflow yaml file")
+    private String workflow;
+
+    public String getWorkflow() {
+        return workflow;
+    }
+
+    public void setWorkflow(String workflow) {
+        this.workflow = workflow;
+    }
 
     public boolean isVersion() {
         return version;

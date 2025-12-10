@@ -2,6 +2,7 @@
 
 ## 1.10.0
 
+- [功能] 支持配置 `workflow` 自定义混淆顺序和次数运行
 - [功能] 支持 `enableImageCrash` 对抗 `Java Swing` 反编译器
 - [功能] 支持 `enableShuffleMember` 配置打乱方法和字段原始排序
 - [功能] 支持 `enableControlFlow` 配置简单的控制流混淆

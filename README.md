@@ -285,6 +285,51 @@ enableControlFlow: false
 enableTrim: false
 ```
 
+## workflow
+
+在 `1.10` 以上版本，支持了通过 `workflow` 方式自定义混淆
+
+该功能未经过完善的测试，请谨慎使用
+
+注意：你需要同时配置 `config.yaml` 和 `workflow.yaml`
+
+通过 `--workflow workflow.yaml` 参数启动
+
+```yaml
+!!me.n1ar4.clazz.obfuscator.config.WorkflowConfig
+# class-obf 1.10 版本后支持 workflow 方式混淆
+# 你可以自定义混淆的顺序 以及 混淆的次数
+# 例如你可以多次加密字符串和多次XOR混淆等
+# 但是否执行该混淆仍然取决于 config.yaml 是否开启
+steps:
+- ParamObfTransformer      # 拓展参数混淆
+- MethodNameTransformer    # 方法名称混淆
+- FieldNameTransformer     # 字段名称混淆
+- ParameterTransformer     # 方法参数混淆
+- XORTransformer           # 整型 XOR 混淆
+- StringArrayTransformer   # 字符串提取数组混淆
+- XORTransformer           # 整型 XOR 混淆
+                           # (字符串提取后对字符串索引 XOR 混淆)
+- StringEncryptTransformer # 字符串 AES 加密混淆
+- JunkCodeTransformer      # 垃圾代码混淆
+- BadAnnoTransformer       # 错误注解混淆
+                           # 建议一次就可以
+- AntiPromptTransformer    # 对抗 AI 混淆
+                           # 建议一次就可以
+- ImageCrashTransformer    # 对抗 Java Swing 混淆
+                           # 建议一次就可以
+- InvokeDynamicTransformer # 动态调用混淆
+                           # 建议一次就可以
+- ShuffleMemberTransformer # 打乱字段方法顺序混淆
+                           # 建议一次就可以
+- ControlFlowTransformer   # 控制流混淆
+                           # 建议一次就可以
+- TrimTransformer          # 数学特性混淆
+                           # 建议一次就可以
+- DeleteInfoTransformer    # 删除编译信息
+                           # 建议一次就可以
+```
+
 ## 如何测试
 
 如何测试你混淆后的单个 `class` 可用？
