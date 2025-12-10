@@ -7,6 +7,7 @@
 - [功能] 支持 `enableControlFlow` 配置简单的控制流混淆
 - [功能] 支持 `enableTrim` 配置对数学方法进行特殊混淆
 - [功能] 支持 `badAnnoLevel` 配置指定注解混淆级别
+- [功能] `badAnnoTextFile` 支持 `classpath:` 方式
 - [BUG] 修复 `badAnnoTextFile` 空配置导致的异常
 - [BUG] 删除无意义的调试打印
 - [其他] 每次提交自动进行添加完善的测试

@@ -2,10 +2,12 @@ package me.n1ar4.clazz.obfuscator.asm;
 
 import me.n1ar4.clazz.obfuscator.Const;
 import me.n1ar4.clazz.obfuscator.core.ObfEnv;
+import me.n1ar4.clazz.obfuscator.utils.IOUtils;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.FieldVisitor;
 import org.objectweb.asm.MethodVisitor;
 
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -73,16 +75,31 @@ public class BadAnnoClassVisitor extends ClassVisitor {
         if (badAnnoText == null || badAnnoText.trim().isEmpty()) {
             data = DEFAULT;
         } else {
-            // 非空情况下再去看是否存在
-            Path annoPath = Paths.get(ObfEnv.config.getBadAnnoTextFile());
-            if (Files.notExists(annoPath)) {
-                data = DEFAULT;
-            } else {
+            // 2025/12/10 允许 classpath:bad-anno.txt
+            if (badAnnoText.startsWith("classpath:")) {
                 try {
-                    byte[] b = Files.readAllBytes(annoPath);
-                    data = new String(b);
+                    String cpPath = badAnnoText.split("classpath:")[1];
+                    InputStream is = BadAnnoClassVisitor.class.getClassLoader().getResourceAsStream(cpPath);
+                    if (is != null) {
+                        data = new String(IOUtils.readAllBytes(is));
+                    } else {
+                        data = DEFAULT;
+                    }
                 } catch (Exception ignored) {
                     data = DEFAULT;
+                }
+            } else {
+                // 非空情况下再去看是否存在
+                Path annoPath = Paths.get(ObfEnv.config.getBadAnnoTextFile());
+                if (Files.notExists(annoPath)) {
+                    data = DEFAULT;
+                } else {
+                    try {
+                        byte[] b = Files.readAllBytes(annoPath);
+                        data = new String(b);
+                    } catch (Exception ignored) {
+                        data = DEFAULT;
+                    }
                 }
             }
         }

@@ -98,6 +98,9 @@ enableBadAnno: true
 # 3: 给类、字段、方法都添加
 badAnnoLevel: 3
 # 恶意注解显示的文本 从本地文件读取
+# 1.支持文件绝对路径
+# 2.支持 classpath:bad-anno.txt
+# 3.如果找不到文件将使用默认
 badAnnoTextFile: bad-anno.txt
 
 # 可能的 AI 反编译对抗
