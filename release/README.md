@@ -10,4 +10,4 @@ Steps:
 6. check `README.md` api doc
 7. actions build
 8. ~~release~~
-9. mvn clean deploy
+9. mvn clean deploy -DskipTests --file pom.xml
