@@ -73,8 +73,8 @@ public class Main {
             }
             // 允许根据 workflow 进行混淆
             logger.info("start workflow class obfuscate");
-            WorkflowRunner.run(path,config,workflowConfig,false,baseCmd);
-        }else{
+            WorkflowRunner.run(path, config, workflowConfig, false, baseCmd);
+        } else {
             // 走普通流程
             logger.info("start class obfuscate");
             Runner.run(path, config, false, baseCmd);

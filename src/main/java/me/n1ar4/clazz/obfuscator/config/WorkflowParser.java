@@ -1,6 +1,5 @@
 package me.n1ar4.clazz.obfuscator.config;
 
-import me.n1ar4.clazz.obfuscator.Const;
 import me.n1ar4.log.LogManager;
 import me.n1ar4.log.Logger;
 import org.yaml.snakeyaml.DumperOptions;
