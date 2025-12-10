@@ -1,5 +1,9 @@
 # class-obf
 
+**本项目仅用于保护用户的 `class` 文件目的，请勿用于非法用途**
+
+**This project is only used to protect users' `class` file and should not be used for illegal purposes**
+
 [CHANGE LOG](CHANGELOG.MD)
 
 <img alt="gitleaks badge" src="https://img.shields.io/badge/protected%20by-gitleaks-blue">
@@ -34,8 +38,6 @@
 本项目已深度集成到 `web-chains` 项目中 (https://github.com/vulhub/java-chains)
 
 ![](img/006.png)
-
-本项目另外被多个 **非开源安全工具** 集成和使用，逐步完善中
 
 ## 介绍
 
