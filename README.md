@@ -35,8 +35,6 @@
 
 从 `1.10.0` 版本后新增各种先进的混淆手法
 
-![](img/006.png)
-
 ## 介绍
 
 工具介绍
@@ -97,7 +95,7 @@
 <dependency>
     <groupId>io.github.4ra1n</groupId>
     <artifactId>class-obf</artifactId>
-    <version>1.10.0</version>
+    <version>1.10.1</version>
 </dependency>
 ```
 

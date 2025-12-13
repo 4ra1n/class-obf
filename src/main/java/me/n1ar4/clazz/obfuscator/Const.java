@@ -8,7 +8,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public interface Const {
-    String VERSION = "1.10.0";
+    String VERSION = "1.10.1";
     String PROJECT_URL = "https://github.com/4ra1n/class-obf";
     Path configPath = Paths.get("config.yaml");
     Path TEMP_PATH = Paths.get("class-obf-temp.class");
