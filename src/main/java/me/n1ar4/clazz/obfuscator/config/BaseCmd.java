@@ -16,6 +16,10 @@ public class BaseCmd {
     private boolean stdOutput;
     @Parameter(names = {"--workflow"}, description = "workflow yaml file")
     private String workflow;
+    @Parameter(names = {"--jar"}, description = "input jar file path")
+    private String jarPath;
+    @Parameter(names = {"--class"}, description = "fully qualified class name in jar")
+    private String className;
 
     public String getWorkflow() {
         return workflow;
@@ -63,5 +67,21 @@ public class BaseCmd {
 
     public void setStdOutput(boolean stdOutput) {
         this.stdOutput = stdOutput;
+    }
+
+    public String getJarPath() {
+        return jarPath;
+    }
+
+    public void setJarPath(String jarPath) {
+        this.jarPath = jarPath;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }

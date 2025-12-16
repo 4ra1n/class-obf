@@ -39,8 +39,9 @@ public class Main {
         if (baseCmd.getConfig() == null || baseCmd.getConfig().isEmpty()) {
             baseCmd.setConfig("config.yaml");
         }
-        if (baseCmd.getPath() == null || baseCmd.getPath().isEmpty()) {
-            logger.error("need -i/--input file");
+        boolean jarMode = baseCmd.getJarPath() != null && !baseCmd.getJarPath().isEmpty();
+        if (!jarMode && (baseCmd.getPath() == null || baseCmd.getPath().isEmpty())) {
+            logger.error("need -i/--input file or --jar");
             commander.usage();
             return;
         }
@@ -51,12 +52,15 @@ public class Main {
             parser.generateConfig();
             return;
         }
-        String p = baseCmd.getPath();
-        Path path = Paths.get(p);
-        if (!Files.exists(path)) {
-            logger.error("class file not exist");
-            commander.usage();
-            return;
+        Path path = null;
+        if (!jarMode) {
+            String p = baseCmd.getPath();
+            path = Paths.get(p);
+            if (!Files.exists(path)) {
+                logger.error("class file not exist");
+                commander.usage();
+                return;
+            }
         }
 
         boolean success = Manager.initConfig(config);
@@ -64,7 +68,7 @@ public class Main {
             return;
         }
 
-        if (baseCmd.getWorkflow() != null && !baseCmd.getWorkflow().isEmpty()) {
+        if (!jarMode && baseCmd.getWorkflow() != null && !baseCmd.getWorkflow().isEmpty()) {
             WorkflowParser workflowParser = new WorkflowParser();
             WorkflowConfig workflowConfig = workflowParser.parse(Paths.get(baseCmd.getWorkflow()));
             if (workflowConfig == null) {
@@ -74,10 +78,29 @@ public class Main {
             // 允许根据 workflow 进行混淆
             logger.info("start workflow class obfuscate");
             WorkflowRunner.run(path, config, workflowConfig, false, baseCmd);
-        } else {
+        } else if (!jarMode) {
             // 走普通流程
             logger.info("start class obfuscate");
             Runner.run(path, config, false, baseCmd);
+        } else {
+            if (baseCmd.getClassName() == null || baseCmd.getClassName().isEmpty()) {
+                logger.error("need --class for jar mode");
+                commander.usage();
+                return;
+            }
+            Path jarPath = Paths.get(baseCmd.getJarPath());
+            if (!Files.exists(jarPath)) {
+                logger.error("jar file not exist");
+                commander.usage();
+                return;
+            }
+            logger.info("start jar class obfuscate");
+            boolean ok = me.n1ar4.clazz.obfuscator.core.JarClassRunner.run(jarPath, baseCmd.getClassName(), config);
+            if (!ok) {
+                logger.error("jar class obfuscate failed");
+            } else {
+                logger.info("jar class obfuscate success");
+            }
         }
     }
 }
